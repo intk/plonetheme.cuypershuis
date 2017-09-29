@@ -1,0 +1,108 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="plone">
+<body>
+
+<metal:content-core fill-slot="content-core">
+<metal:block define-macro="content-core">
+
+  <div metal:define-macro="text-field-view"
+      id="parent-fieldname-text" class="stx"
+      tal:define="text view/text"
+      tal:condition="text"
+      tal:attributes="class view/text_class">
+    <div metal:define-slot="inside" tal:replace="structure text">The body</div>
+  </div>
+
+  <tal:carousel tal:define="batch view/batch">
+    <div class="carousel" id="slickcarousel" tal:condition="python:batch">
+        <div class="carousel-wrapper">
+            <div class="slideshow-wrapper">
+              <tal:items tal:repeat="item batch">
+                <tal:definitions 
+                        tal:define="item_type item/PortalType;
+                                    item_id item/getId;
+                                    item_path item/getPath|nothing;
+                                    item_uid item/UID;
+                                    item_url item/getURL;
+                                    item_title item/Title;
+                                    item_index repeat/item/index;
+                                    item_description item/Description;
+                                    item_id item/getId|nothing;
+                                    first repeat/item/start">
+                        
+                        <tal:isobject tal:condition="python: item_type in ['Object', 'Event', 'Folder', 'Document', 'Image']"
+                            tal:define="item_img python:view.getLeadMediaURL(item);">
+                            
+                            <tal:hasimage tal:condition="python: item_img != None">
+                                
+                                <div tal:attributes="data-title python: item_title; 
+                                                    data-description python: item_description; 
+                                                    data-url python: item_url;
+                                                    data-path python: item_path;
+                                                    data-id python: item_id;
+                                                    data-index python: item_index;
+                                                    class python: 'carousel-item first-slide' if first else 'carousel-item'" 
+                                                    >
+                                        
+                                        <div class="carousel-image-wrapper">
+                                           <img
+                                                 src="" alt=""
+                                                 tal:attributes="src item_img; class python:'carousel-image';" /> 
+                                        </div>
+                                </div>
+                            </tal:hasimage>
+                        </tal:isobject>
+
+                        <tal:islink tal:condition="python: item_type == 'Link'">
+
+                            <div tal:define="remoteURL item/getRemoteUrl;
+                                            item_img python:view.getLeadMediaURL(item);"
+
+                                            tal:attributes="data-title python: item_title; 
+                                                            data-description python: item_description; 
+                                                            data-url python: item_url;
+                                                            data-path python: item_path;
+                                                            data-id python: item_id;
+                                                            data-index python: item_index;" 
+                                                            class="carousel-item video-slide">
+
+                                    <tal:firstslide>
+                                        <tal:usepicture tal:condition="python: item_img != None">
+                                            <div class="video-play-btn"></div>
+
+                                            <tal:slideshowbtn tal:condition="python:first">
+                                                <div tal:condition="view/data/show_dates" class="slideshow-btn-down"></div>
+                                            </tal:slideshowbtn>
+
+                                            <div class="carousel-image-wrapper">
+                                                <img src="" alt="" tal:attributes="src item_img; class python:'overlay-image';" />
+                                            </div>
+
+                                            <iframe frameborder="0" allowfullscreen tal:attributes="id item_id; src remoteURL" class="video-iframe with-overlay"></iframe>
+                                        </tal:usepicture>
+                                        
+                                        <tal:nopicture tal:condition="python: item_img == None">
+                                            <iframe frameborder="0" allowfullscreen tal:attributes="id item_id; src remoteURL" class="video-iframe without-overlay"></iframe>
+                                        </tal:nopicture>
+
+                                    </tal:firstslide>
+                            </div>
+                        </tal:islink>
+                    </tal:definitions>
+              </tal:items>
+            </div>
+        </div>
+    </div>
+  </tal:carousel>
+
+</metal:block>
+</metal:content-core>
+
+</body>
+</html>
+
