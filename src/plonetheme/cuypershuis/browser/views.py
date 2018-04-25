@@ -9,7 +9,7 @@ from plone.app.multilingual.interfaces import ITranslationManager
 from plone.app.contenttypes.browser.collection import CollectionView
 from plone.app.uuid.utils import uuidToCatalogBrain
 
-from datetime import date
+from datetime import date, datetime, timedelta
 from DateTime import DateTime
 import time
 
@@ -32,6 +32,46 @@ class ContextToolsView(BrowserView):
             except:
                 return False
         return True
+
+    def isEventPermanent(self, event):
+
+        NUM_YEARS = 2
+        YEAR = 365
+        YEAR_EXTRA = 365.25
+        YEAR_DIFF = YEAR * NUM_YEARS
+        YEARS_DIFF_EXTRA = YEAR_EXTRA * NUM_YEARS
+
+        if event.portal_type != 'Event':
+            return {'is_permanent': False, 'title': ''}
+        else:
+            try:
+                t = DateTime(time.time())
+                if event.end != None and event.start != None:
+                    end = event.end
+                    start = event.start
+                    today = datetime.today().date()
+
+                    diff = end.date() - start.date()
+                    if (diff >= timedelta(days=YEAR_DIFF) or diff >= timedelta(days=YEARS_DIFF_EXTRA)) and start.date() <= today:
+                        parent = getattr(event, '__parent__', None)
+                        if not parent:
+                            event_obj = event.getObject()
+                            parent = getattr(event_obj, '__parent__', None)
+
+                        if parent:
+                            parent_title = getattr(parent,'title', '')
+                            if parent_title:
+                                return {'is_permanent': True, 'title': parent_title}
+                            else:
+                                return {'is_permanent': True, 'title': ''}
+                        else:
+                            return {'is_permanent': True, 'title': ''}
+
+                    return {'is_permanent': False, 'title': ''}
+            except:
+                return {'is_permanent': False, 'title': ''}
+
+        return {'is_permanent': True, 'title': ''}
 
 class OnlineExperienceView(CollectionView):
 

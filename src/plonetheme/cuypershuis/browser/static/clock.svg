@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>clock1</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01-home" transform="translate(-419.000000, -684.000000)" fill="#101010">
+            <g id="open" transform="translate(419.000000, 670.000000)">
+                <g id="clock1" transform="translate(0.000000, 14.000000)">
+                    <path d="M12,24 C5.372583,24 0,18.627417 0,12 C0,5.372583 5.372583,0 12,0 C18.627417,0 24,5.372583 24,12 C24,18.627417 18.627417,24 12,24 L12,24 Z M12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 L12,2 Z M14.23,15.7 L11.3,12.761 C11.0934769,12.5580613 10.9841944,12.2761126 11,11.987 L11,7 C11,6.44771525 11.4477153,6 12,6 C12.5522847,6 13,6.44771525 13,7 L13,11.531 L15.7,14.231 C16.1056531,14.6369293 16.1054293,15.2948469 15.6995,15.7005 C15.2935707,16.1061531 14.6356531,16.1059293 14.23,15.7 L14.23,15.7 Z"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

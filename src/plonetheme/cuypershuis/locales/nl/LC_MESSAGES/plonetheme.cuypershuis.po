@@ -98,3 +98,7 @@ msgstr "Standplaats"
 msgid 'object_on_display'
 msgstr "Nu te zien"
 
+#: ../object.py
+msgid 'share_this_page'
+msgstr "Deel dit artikel"
+

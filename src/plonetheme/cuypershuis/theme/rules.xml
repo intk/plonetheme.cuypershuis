@@ -187,8 +187,8 @@
 
           <xsl:variable name="central">
             <xsl:if test="//aside[@id='portal-column-one'] and //aside[@id='portal-column-two']">col-xs-12 col-sm-6</xsl:if>
-            <xsl:if test="//aside[@id='portal-column-two'] and not(//aside[@id='portal-column-one'])">col-xs-12 col-sm-9</xsl:if>
-            <xsl:if test="//aside[@id='portal-column-one'] and not(//aside[@id='portal-column-two'])">col-xs-12 col-sm-9</xsl:if>
+            <xsl:if test="//aside[@id='portal-column-two'] and not(//aside[@id='portal-column-one'])">col-xs-12 col-sm-12</xsl:if>
+            <xsl:if test="//aside[@id='portal-column-one'] and not(//aside[@id='portal-column-two'])">col-xs-12 col-sm-12</xsl:if>
             <xsl:if test="not(//aside[@id='portal-column-one']) and not(//aside[@id='portal-column-two'])">col-xs-12 col-sm-12</xsl:if>
           </xsl:variable>
 
@@ -223,8 +223,8 @@
 
       <!-- Right column -->
       <rules css:if-content="#portal-column-two">
-        <replace css:theme="#column2-container">
-            <div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="complementary">
+        <replace css:theme="#right-container">
+            <div class="col-xs-12 col-md-3 sidebar-offcanvas" role="complementary">
               <aside id="portal-column-two">
                  <xsl:copy-of css:select="#portal-column-two > *"/>
               </aside>
@@ -250,8 +250,8 @@
                 class="text-widget required form-control input-lg textline-field" placeholder="Email" id="form-widgets-email" name="form.widgets.email"></input>
               <span class="input-group-btn">
                 <button class="submit-button" name="form.buttons.subscribe" id="form-buttons-subscribe" type="submit" role="submit">
-                  <span class="mailchimp-btn-text">Inschrijven</span>
-                  <span class="fa fa-chevron-right"></span>
+                  <span class="mailchimp-btn-text nl">Aanmelden</span>
+                  <span class="mailchimp-btn-text en">Subscribe</span>
                 </button>
               </span>
             </div>

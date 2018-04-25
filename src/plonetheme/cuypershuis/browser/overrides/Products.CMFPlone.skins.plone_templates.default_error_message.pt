@@ -98,7 +98,7 @@
                                             url python:result_url + '/view' if result_type in use_view_action else result_url;"
                                             class="similar-item row" tal:on-error="nothing">
 
-                                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" tal:attributes="class python: 'col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding-left' if leadmedia else 'col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding-left no-media'">
                                     <tal:leadmedia tal:condition="python:leadmedia"
                                         tal:define="lead_media python: getImageObject(similar)">
                                         <a href="${url}"
@@ -109,13 +109,12 @@
                                     </tal:leadmedia>
                                 </div>
 
-                                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8" tal:attributes="class python: 'col-xs-12 col-sm-8 col-md-8 col-lg-8 no-padding-left search-item-right' if leadmedia else 'col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-media-right search-item-right'">
                                     <a href="${url}"
                                        tal:define="item_wf_state_class string: state-${similar/review_state};"
                                        >
-                                       <h4 class="item-title">${similar/pretty_title_or_id}</h4>
+                                       <h2 class="item-title">${similar/pretty_title_or_id}</h2>
                                     </a>
-
                                     <p class="item-description"><span tal:content="python:plone_view.cropText(similar.Description or '', desc_length)"> Description </span></p>
                                 </div>
                             </div>

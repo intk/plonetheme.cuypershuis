@@ -27,19 +27,28 @@
     </tal:cond>
 
     <tal:cond condition="python:'date' not in excludes"
-     tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(context)" 
-    >
-      <li class="event-date" tal:attributes="class python: 'event-date past' if is_past else 'event-date'">
-        <strong i18n:translate="event_when" class="event-date-title">When</strong>
-        <span tal:define="start_tzname data/timezone;
-                      start_utcdelta python:data.start.tzinfo.utcoffset(data.start);
-                      start_utcoffset python:(start_utcdelta.days*86400+start_utcdelta.seconds)*100/60/60;">
-          <tal:date replace="structure python:view.formatted_date(context)" />
-          <span class="timezone"
-              tal:condition="start_tzname">
-            (<tal:tzname replace="start_tzname">timezone name</tal:tzname> / UTC<tal:tzoffset replace="start_utcoffset" />)
+     tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(context);
+                 is_permanent python: context.restrictedTraverse('@@context_tools').isEventPermanent(context);">
+
+      <li class="event-date" tal:attributes="class python: 'event-date %s %s' % (('past' if is_past else ''), ('permanent' if is_permanent.get('is_permanent', False) else ''))">
+        
+        <tal:show_dates tal:condition="python: not is_permanent.get('is_permanent', '')">
+          <strong i18n:translate="event_when" class="event-date-title">When</strong>
+          <span tal:define="start_tzname data/timezone;
+                        start_utcdelta python:data.start.tzinfo.utcoffset(data.start);
+                        start_utcoffset python:(start_utcdelta.days*86400+start_utcdelta.seconds)*100/60/60;">
+            <tal:date replace="structure python:view.formatted_date(context)" />
+            <span class="timezone"
+                tal:condition="start_tzname">
+              (<tal:tzname replace="start_tzname">timezone name</tal:tzname> / UTC<tal:tzoffset replace="start_utcoffset" />)
+            </span>
           </span>
-        </span>
+        </tal:show_dates>
+
+        <tal:show_parent tal:condition="python: is_permanent.get('is_permanent', '')">
+          <span tal:content="python: is_permanent.get('title', '')" tal:condition="python: is_permanent.get('is_permanent', '')"></span>
+        </tal:show_parent>
+
       </li>
     </tal:cond>
 

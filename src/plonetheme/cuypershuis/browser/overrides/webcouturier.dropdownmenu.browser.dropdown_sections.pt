@@ -9,7 +9,7 @@
   <nav class="plone-navbar navbar" id="portal-globalnav-wrapper">
     <div class="container-fluid"
       tal:define="language python: getattr(context, 'language', 'nl') if getattr(context, 'language', 'nl') != '' else 'nl';
-                  extra_languages python: view.extra_languages();">
+                  extra_languages python: True;">
 
       <div class="plone-navbar-header navbar-header">
         <a href="#portal-globalnav-collapse" class="nav-trigger" data-toggle="collapse" data-target="#portal-globalnav-collapse" aria-expanded="false">
@@ -49,7 +49,7 @@
               <tal:testlang tal:condition="python: language != 'en'">
                 <a href="#" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
                   NL
-                  <span class="fa fa-angle-down"></span>
+                  <span class="fa fa-caret-down"></span>
                 </a>
               </tal:testlang>
               <ul class="submenu dropdown-menu">
@@ -63,13 +63,13 @@
                     </a>
                   </tal:testlang>
                 </li>
-                <tal:extra_lang tal:repeat="extra_lang extra_languages">
+                <!--<tal:extra_lang tal:repeat="extra_lang extra_languages">
                   <li class="extra-lang">
                     <a href="#" tal:attributes="href python: extra_lang.get('url', '')" tal:content="python: extra_lang.get('id', '')" class="clearfix">
                       DE
                     </a>
                   </li>
-                </tal:extra_lang>
+                </tal:extra_lang>-->
               </ul>
             </li>
           </ul>
@@ -91,7 +91,7 @@
                                   class string:${class_position}${class_children}${class_selected}">
 
                   <a
-                      tal:condition="python: subitems"
+                      tal:condition="python: subitems and not repeat.tab.end"
                       tal:attributes="title title; target target;"
                       href="#"
                       class="dropdown-toggle ${review_state}"
@@ -101,13 +101,14 @@
                       data-toggle="dropdown">
                       <tal:text replace="tab/name"/>
                       <span class="fa fa-angle-down"></span></a>
+                  
                   <a
-                      tal:condition="python: not subitems"
+                      tal:condition="python: not subitems or repeat.tab.end"
                       tal:attributes="href href; title title; target target;"
                       class="${review_state}"
                       tal:content="tab/name">Tab Name</a>
 
-                  <tal:block tal:condition="python:subitems">
+                  <tal:block tal:condition="python:subitems and not repeat.tab.end">
                   <ul class="submenu dropdown-menu">
                   <tal:subitems tal:replace="structure subitems">
                     <tal:comment replace="nothing">Submenu</tal:comment>

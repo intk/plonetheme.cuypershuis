@@ -66,9 +66,9 @@
                 </span>
         </div>
         
-        <div class="visualClear div-advanced-search">
+        <!--<div class="visualClear div-advanced-search">
           <a class="advanced-search" tal:attributes="href python: '/%s/@@advancedsearch?%s' %(getattr(context,'language', 'nl'), advanced_query) if advanced_query else '/%s/@@advancedsearch' %(getattr(context, 'language', 'nl'))" i18n:translate="label_advanced_search">Advanced search</a>
-        </div>
+        </div>-->
         
         <dl class="actionMenu"
             tal:attributes="class python:view.show_advanced_search() and 'actionMenu' or 'actionMenu'">
@@ -228,8 +228,9 @@
           
 
         <div>
-
           <div>
+            <span id="search-term" tal:condition="python: request.get('ajax_load', '') == '1'" tal:content="st"></span>
+
             <h1 class="documentFirstHeading"
                 i18n:translate=""
                 tal:condition="not:st">
@@ -329,7 +330,7 @@
                                             item_on_display item/object_on_display|nothing;
                                             item_is_event python: item_type in ['Event', 'Exhibition'];">
 
-                                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding-left">
+                                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding-left" tal:attributes="class python: 'col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding-left' if leadmedia else 'col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding-left no-media'">
                                   <tal:leadmedia tal:condition="leadmedia">
                                     <a href="#" tal:define="item_url item/getURL;item_type item/PortalType"
                                      tal:attributes="href python:item_type in use_view_action and (item_url + '/view') or item_url;
@@ -343,25 +344,30 @@
                                   </tal:leadmedia>
                                 </div>
 
-                                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                  
-                                  <a href="#" tal:define="item_url item/getURL;item_type item/PortalType"
-                                     tal:attributes="href python:item_type in use_view_action and (item_url + '/view') or item_url;
-                                                     class string:state-${item/review_state}">
-                                  <h4 class="item-title" 
-                                     tal:content="python:item.getDataOrigin().pretty_title_or_id()">Title</h4>
-                                   </a>
+                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8" tal:attributes="class python: 'col-xs-12 col-sm-8 col-md-8 col-lg-8 search-item-right' if leadmedia else 'col-xs-12 col-sm-12 col-md-12 col-lg-12 no-media-right search-item-right'">
                                   
                                   
-                                    <tal:event condition="item_is_event"
-                                     tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(item)">
-                                      <p class="post-meta event-date" tal:attributes="class python: 'post-meta event-date past' if is_past else 'post-meta event-date'">
+                                  <tal:event condition="item_is_event"
+                                     tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(item);
+                                                 is_permanent python: context.restrictedTraverse('@@context_tools').isEventPermanent(item)">
+                                      <p class="post-meta event-date" tal:attributes="class python: 'post-meta event-date %s %s' % (('past' if is_past else ''), ('permanent' if is_permanent.get('is_permanent', False) else ''))">
+                                      
                                       <tal:date tal:replace="structure python:view.formatted_date(item)"/>
                                       <span tal:condition="item/location" i18n:translate="label_event_byline_location">&mdash;
                                         <span tal:content="string:${item/location}" class="location" i18n:name="location">Oslo</span>,
                                       </span>
                                       </p>
                                     </tal:event>
+
+                                  <a href="#" tal:define="item_url item/getURL;item_type item/PortalType"
+                                     tal:attributes="href python:item_type in use_view_action and (item_url + '/view') or item_url;
+                                                     class string:state-${item/review_state}">
+                                  <h2 class="item-title" 
+                                     tal:content="python:item.getDataOrigin().pretty_title_or_id()">Title</h2>
+                                   </a>
+                                  
+                                  
+                                    
                                  
                                   <p class="item-description" tal:condition="item/CroppedDescription" tal:content="item/CroppedDescription">Subtitle</p>
                                   
