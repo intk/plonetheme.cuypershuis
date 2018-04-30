@@ -1175,7 +1175,6 @@ body.frontend, body#tinymce {
 			padding-left: 0px;
 			padding-right: 0px;
 		}
-
 		.no-margin {
 			margin-left: 0px;
 			margin-right: 0px;
@@ -3959,6 +3958,20 @@ body.frontend.template-default_error_message {
 	/* ZM */
 	#page-not-found-list .list-not-found {
 		padding-bottom: 50px;
+
+
+	}
+
+	.similar-item a {
+		&:hover {
+			text-decoration: none;
+			color: @brand-primary-text-black;
+
+			h2 {
+				color: @brand-primary-text-black;
+				text-decoration: underline;
+			}
+		}
 	}
 }
 
