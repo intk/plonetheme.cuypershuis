@@ -22,7 +22,7 @@
 
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
         tal:define="number repeat/obj/number;
-                    portlet_class python: 'col-lg-%s col-md-%s col-sm-6 col-xs-12 portlet-item' %('6' if number > 3 else '4', '6' if number > 3 else '4') if context.portal_type in ['Portlet Page', 'Event', 'Document'] else 'col-lg-6 col-md-6 col-sm-6 col-xs-12 portlet-item';
+                    portlet_class python: 'col-lg-%s col-md-%s col-sm-6 col-xs-12 portlet-item %s' %('6' if number > 3 else '4', '6' if number > 3 else '4', '' if number > 3 else 'portlet-item-small') if context.portal_type in ['Portlet Page', 'Event', 'Document'] else 'col-lg-6 col-md-6 col-sm-6 col-xs-12 portlet-item';
                     plone_view python:context.restrictedTraverse('@@plone');
                     oddrow repeat/obj/odd;
                     item_type python:obj.portal_type;

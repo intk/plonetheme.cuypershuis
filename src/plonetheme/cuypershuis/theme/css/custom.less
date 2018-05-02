@@ -1962,8 +1962,8 @@ body.frontend, body#tinymce {
 
 			.portletFooter {
 				clear: both;
-				padding-bottom: 0px;
-				padding-top: 30px;
+				padding-bottom: 72px;
+				padding-top: 0px;
 				margin-top: 0px;
 
 				a:hover {
@@ -1993,12 +1993,23 @@ body.frontend, body#tinymce {
 
 		@media(min-width: 768px) {
 			#row-items > div.portlet-item {
-				padding-bottom: 40px;
+				padding-bottom: 0px;
 			}
 		}
 
 		@media(min-width: 992px) {
 			#row-items > div.portlet-item {
+				padding-bottom: 0px;
+			}
+
+			#column-collective-portletpage-toprow-portlet-nu-te-zien div.portlet-item.portlet-item-small,
+			#column-collective-portletpage-toprow-portlet-whats-on div.portlet-item.portlet-item-small {
+				padding-bottom: 75px;
+			}	
+		}
+
+		&.section-frontpage #row-items > div.portlet-item.portlet-item-small {
+			@media(min-width: 992px) {
 				padding-bottom: 75px;
 			}
 		}
