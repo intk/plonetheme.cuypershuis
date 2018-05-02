@@ -132,7 +132,7 @@
                             <input type="checkbox" name="portal_type:list" value="#" class="noborder" checked="checked"
                                    tal:attributes="value type;
                                                    id string:portal_type_${repeat/sublist/number}_${repeat/type/number};
-                                                   checked python:((type in ['Object']) and 'checked' or '')"/>
+                                                   checked python:((type in ['test']) and 'checked' or '')"/>
                               <label for="" i18n:translate=""
                                      tal:attributes="for string:portal_type_${repeat/sublist/number}_${repeat/type/number}"
                                      tal:content="python: portal_types.getTypeInfo(type).Title()" />
