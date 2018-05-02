@@ -31,7 +31,6 @@
                  is_permanent python: context.restrictedTraverse('@@context_tools').isEventPermanent(context);">
 
       <li class="event-date" tal:attributes="class python: 'event-date %s %s' % (('past' if is_past else ''), ('permanent' if is_permanent.get('is_permanent', False) else ''))">
-        
         <tal:show_dates tal:condition="python: not is_permanent.get('is_permanent', '')">
           <strong i18n:translate="event_when" class="event-date-title">When</strong>
           <span tal:define="start_tzname data/timezone;
@@ -134,8 +133,8 @@
              tal:attributes="href string:$here_url/ics_view"
              title="Download this event in iCal format"
              i18n:attributes="title title_add_to_ical;">
-            <img src="" alt=""
-                tal:attributes="src string:${portal_url}/++resource++plone.app.event/icon_export_ical.png"/>
+        <!--<img src="" alt=""
+                tal:attributes="src string:${portal_url}/++resource++plone.app.event/icon_export_ical.png"/>-->
             <span i18n:translate="label_add_to_ical">iCal</span></a>
         </tal:span>
       </li>

@@ -2588,6 +2588,9 @@ footer, body.mce-content-body {
 			    }
 
 			    img {
+			    	transform: scale(1.00);
+			    	transition: transform .2s;
+			    	
 			    	max-width: 100% !important;
 
 			    	@media(max-width: 768px) {
@@ -2596,6 +2599,8 @@ footer, body.mce-content-body {
 
 			    	&:hover {
 			    		cursor: pointer;
+			    		transform: scale(1.02);
+			    		transition: transform .2s;
 			    	}
 			    }
 	    }
@@ -4982,17 +4987,17 @@ body.template-listing_view {
 
 body.plone-toolbar-left-expanded {
 	.navbar-default .menu-search-button > a.nav-btn {
-		background: url("++resource++plonetheme.cuypershuis/icon-search-blue.svg") no-repeat center;
-		background: url("++resource++plonetheme.cuypershuis/icon-search.svg") no-repeat center;
+		background: url("/nl/intk/images/icon-search-blue.svg") no-repeat center;
+		background: url("/nl/intk/images/icon-search.svg") no-repeat center;
 		background-size: 25px;
 
 		&:hover,
 		&:focus,
 		&:active {
-			background: url("++resource++plonetheme.cuypershuis/icon-search-blue.svg") no-repeat center;
+			background: url("/nl/intk/images/icon-search-blue.svg") no-repeat center;
 			background-size: 25px;
 			@media (max-width: 1185px) {
-				background: url("++resource++plonetheme.cuypershuis/icon-search-blue.svg") no-repeat 20px;
+				background: url("/nl/intk/images/icon-search-blue.svg") no-repeat 20px;
 				background-size: 25px;
 			}
 		}
@@ -5003,7 +5008,7 @@ body.plone-toolbar-left-expanded {
 		}
 
 		&:after {
-			content: url("++resource++plonetheme.cuypershuis/icon-search-blue.svg");
+			content: url("/nl/intk/images/icon-search-blue.svg");
 	    	display: none;
 		}
 	}
@@ -5011,28 +5016,28 @@ body.plone-toolbar-left-expanded {
 
 body:not(.plone-toolbar-left-expanded) {
 	.navbar-default .menu-search-button > a.nav-btn {
-		background: url("++resource++plonetheme.cuypershuis/icon-search-blue.svg") no-repeat center;
-		background: url("++resource++plonetheme.cuypershuis/icon-search.svg") no-repeat center;
+		background: url("/nl/intk/images/icon-search-blue.svg") no-repeat center;
+		background: url("/nl/intk/images/icon-search.svg") no-repeat center;
 		background-size: 25px;
 
 		&:hover,
 		&:focus,
 		&:active {
-			background: url("++resource++plonetheme.cuypershuis/icon-search-blue.svg") no-repeat center;
+			background: url("/nl/intk/images/icon-search-blue.svg") no-repeat center;
 			background-size: 25px;
 			@media (max-width: 1080px) {
-				background: url("++resource++plonetheme.cuypershuis/icon-search-blue.svg") no-repeat 20px;
+				background: url("/nl/intk/images/icon-search-blue.svg") no-repeat 20px;
 				background-size: 25px;
 			}
 		}
 
 		@media (max-width: 1080px) {
-			background: url("++resource++plonetheme.cuypershuis/icon-search.svg") no-repeat 20px;
+			background: url("/nl/intk/images/icon-search.svg") no-repeat 20px;
 			background-size: 25px;
 		}
 
 		&:after {
-			content: url("++resource++plonetheme.cuypershuis/icon-search-blue.svg");
+			content: url("/nl/intk/images/icon-search-blue.svg");
 	    	display: none;
 		}
 	}
@@ -6280,7 +6285,7 @@ th.header-titleAuthorImprintCollation_imprint_year {
 	width: 10%;
 }
 
-body:not(.portaltype-event) .event.summary {
+body:not(.portaltype-event):not(.portaltype-occurrence) .event.summary {
 	display: none;
 }
 
@@ -7995,6 +8000,13 @@ footer ul.social-media li {
     }
 }
 
+body.frontend.portaltype-event, 
+body.frontend.portaltype-occurrence {
+	.event-date.permanent {
+		display: none !important;
+	}
+}
+
 body.frontend.template-search,
 body.frontend.template-advancedsearch,
 body.template-default_error_message {
@@ -8290,6 +8302,12 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 		}
 	}
 }
+
+
+.portaltype-event li.event-dates,
+.portaltype-occurrence li.event-dates {
+	display: none !important;
+}	
 
 
 

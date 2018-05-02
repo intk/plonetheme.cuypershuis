@@ -18,9 +18,9 @@
           </span>
         </a>
         <a class="navbar-brand" href="/">
-          <img src="++resource++plonetheme.cuypershuis/website-logo.svg" class="website-logo-menu"/>
+          <img src="/nl/intk/images/website-logo.svg" class="website-logo-menu"/>
         </a>
-        <img src="++resource++plonetheme.cuypershuis/icon-search-blue.svg" style="display: none;"/>
+        <img src="/nl/intk/images/icon-search-blue.svg" style="display: none;"/>
       </div>
 
       <div class="plone-collapse collapse navbar-collapse" id="portal-globalnav-collapse">

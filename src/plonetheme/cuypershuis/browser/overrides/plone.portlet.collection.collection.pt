@@ -87,13 +87,13 @@
 
     </div>
     
-    <tal:notportletpage tal:condition="python: context.portal_type not in ['Portlet Page', 'Event', 'Document']">
+    <tal:notportletpage tal:condition="python: context.portal_type not in ['Portlet Page', 'Event', 'Document', 'Occurrence']">
       <tal:clearfix condition="python: number % 2 == 0" tal:define="number repeat/obj/number">
         <div class="clearfix visible-lg visible-md"></div>
       </tal:clearfix> 
     </tal:notportletpage>
     
-    <tal:portletpage tal:condition="python: context.portal_type in ['Portlet Page', 'Event', 'Document']">
+    <tal:portletpage tal:condition="python: context.portal_type in ['Portlet Page', 'Event', 'Document', 'Occurrence']">
       <tal:clearfix condition="python: number % 3 == 0" tal:define="number repeat/obj/number">
         <div class="clearfix visible-lg visible-md"></div>
       </tal:clearfix> 
