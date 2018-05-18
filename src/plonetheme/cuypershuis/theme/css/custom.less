@@ -5571,6 +5571,7 @@ body:not(.plone-toolbar-left-expanded) {
 
     		img.website-logo-menu {
     			width: 200px !important;
+			height: 18px;
     			margin-left: 0px !important;
     		}
 	    }
@@ -5619,6 +5620,7 @@ body.plone-toolbar-left-expanded {
 
 	    	img.website-logo-menu {
     			width: 200px !important;
+			height: 18px;
     			margin-left: 0px !important;
     		}
 	    }
@@ -7794,6 +7796,7 @@ body i.glyphicon.link-https {
 @media (min-width: 1081px) {
 	#website-nav a.navbar-brand img.website-logo-menu {
 		width: 310px !important;
+		height: 28px;
 		margin-left: 14px;
 	}
 }
@@ -8277,6 +8280,11 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 		a:active {
 			h3.item-title {
 				border-bottom: 2px solid #ffffff !important;
+
+				@media(max-width: 768px) {
+					border-bottom: 2px solid transparent !important;
+					text-decoration: underline !important;
+				}
 			}
 
 			outline: 0px !important;
