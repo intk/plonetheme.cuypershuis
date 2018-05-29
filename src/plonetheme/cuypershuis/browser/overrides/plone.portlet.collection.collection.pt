@@ -36,7 +36,7 @@
                     "
         tal:attributes="class portlet_class">
         <div class="thumb-wrapper">         
-          <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')" href="" tal:attributes="href python: itemUrl+'?collection_id='+collection_id+'&b_start='+str(item_index) if collection_item != None and item_type == 'Object' else itemUrl"
+          <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')" href="" tal:attributes="href python: itemUrl"
             tal:define="item_img python:view.getImageObject(obj)">
 
             <div class="on-display-wrapper" tal:condition="python:item_on_display" i18n:domain="plonetheme.cuypershuis">
