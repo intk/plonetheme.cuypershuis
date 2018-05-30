@@ -10,7 +10,7 @@
     <header class="portletHeader">
         <span class="portletTopLeft"></span>
         <a tal:attributes="href collection_url" tal:omit-tag="not:view/data/show_more">
-            <h1 tal:content="view/data/header"></h1><h1 class="arrow-title"><span class="fa fa-chevron-right"></span></h1>
+            <h1 class="portlet-title-header"> <span tal:content="view/data/header" ></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>.</h1>
         </a>
         <h2 tal:content="collection_item/Description" tal:condition="collection_item/Description"></h2>
         <span class="portletTopRight"></span>

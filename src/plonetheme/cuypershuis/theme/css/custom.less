@@ -1872,23 +1872,51 @@ body.frontend, body#tinymce {
 			}
 		}
 
+		.portletHeader {
+			position: relative;
+		}
+
 		h1 {
 			text-align: left;
-			margin-top: 0px;
-			font-weight: 400;
-			letter-spacing: 0.00em;
-			color: @brand-primary-text-black !important;
-		    .circularBook();
-		    font-size: 34px;
+		    margin-top: 0px;
+		    letter-spacing: 0.00em;
+		    color: #000000 !important;
+		    font-family: 'circularBook', Arial, sans-serif;
+		    font-size: 18px;
 		    font-weight: 400;
 		    text-transform: none;
-		    letter-spacing: 0.00em;
+		    letter-spacing: -0.01em;
 		    margin-bottom: 0px;
-		    line-height: 40px;
-		    padding-bottom: 27px;
+		    line-height: 18px;
+		    padding-bottom: 0px;
+		    text-transform: lowercase;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    margin-left: 68px;
+		    z-index: 100;
+		    transform: translateY(-50%);
 
 			@media (max-width: 768px) {
-				font-size: 28px;
+				margin-left: 25px;
+				font-size: 15px;
+				line-height: 15px;
+			}
+		}
+
+		#portletPageTopRow > div:nth-child(even) {
+			h1 {
+				right: 0;
+				left: auto;
+				margin-right: 68px;
+				margin-left: auto;
+
+				@media (max-width: 768px) {
+					left:0;
+					margin-left: 35px;
+					right: auto;
+					margin-right: auto;
+				}
 			}
 		}
 
@@ -1940,10 +1968,12 @@ body.frontend, body#tinymce {
 				@media(min-width: 769px) {
 					padding-left: 66px;
 					padding-top: 0px;
+					margin-top: 40px;
 				}
 
 				@media(max-width: 768px) {
 					padding-left: 0px;
+					padding-top: 0px;
 				}
 
 				a:hover {
@@ -1953,12 +1983,19 @@ body.frontend, body#tinymce {
 				@media (max-width: 480px) {
 					padding-left: 0px;
 					padding-right: 0px;
+					padding-top: 0px;
+				}
+
+				@media (max-width: 768px) {
+					padding-top: 0px;
+					margin-top: 60px !important;
 				}
 			}
 
 			padding-bottom: 0px;
 			padding-top: 0px;
 			margin-bottom: 0px;
+			margin-top: 40px;
 
 			.portletFooter {
 				clear: both;
@@ -2763,8 +2800,8 @@ footer {
 
 	div.portlet-static-footer {
 		background-color: #ffffff;
-		margin-left: -15px;
-		margin-right: -15px;
+		margin-left: 0px;
+		margin-right: 0px;
 
 		p {
 			color: #ffffff;
