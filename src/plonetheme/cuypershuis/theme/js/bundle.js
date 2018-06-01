@@ -207,6 +207,8 @@ jQuery(document).ready(function($) {
      document.documentElement.className+=' ie'+document.documentMode;
   }
 
+  jQuery("footer").footerReveal();
+
 
   if (jQuery("body.portaltype-portlet-page")) {
   	var all_circles = jQuery(".portlet-title-header");
