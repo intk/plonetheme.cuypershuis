@@ -842,12 +842,12 @@
 body {
 	background-color: #ffffff;
 	overflow-x: hidden;
-	height: 100%;
+	min-height: 100%;
 }
 
 html {
 	background-color: #ffffff;
-	height: 100%;
+	min-height: 100%;
 }
 
 abbr[title],
@@ -2039,7 +2039,7 @@ body.frontend, body#tinymce {
 				padding-bottom: 0px;
 			}
 
-			#column-collective-portletpage-toprow-portlet-nu-te-zien div.portlet-item.portlet-item-small,
+			#column-collective-portletpage-toprow-portlet-historiehuis div.portlet-item.portlet-item-small,
 			#column-collective-portletpage-toprow-portlet-whats-on div.portlet-item.portlet-item-small {
 				padding-bottom: 75px;
 			}	
@@ -3010,7 +3010,7 @@ footer {
 		width: 100%;
 
 		@media(min-width: 992px) {
-			padding-top: 100px;
+			padding-top: 120px;
 		}
 	}
 
@@ -5153,13 +5153,17 @@ body.plone-toolbar-left-expanded {
 	.circularBold();
 	color: @brand-primary;
 	font-size: 30px;
-	padding-top: 32px;
+	padding-top: 34px;
 	padding-bottom: 35px;
 	&:hover,
 	&:active,
 	&:focus {
 		color: @brand-primary;
 	};
+
+	@media(max-width: 1080px) {
+		padding-top: 23px !important;
+	}
 }
 
 .navbar-default ul.submenu {
@@ -5656,8 +5660,8 @@ body.plone-toolbar-left-expanded {
 	    	padding-bottom: 36px;
 
 	    	img.website-logo-menu {
-    			width: 200px !important;
-			height: 18px;
+    			width: 120px !important;
+				height: 18px;
     			margin-left: 0px !important;
     		}
 	    }
@@ -6948,7 +6952,7 @@ body.template-checkout {
 
 	h2 {
 	    font-weight: 700;
-	    color: #dab203;
+	    color: #e81f2d;
 	    line-height: 36px;
 	    font-size: 1.875em;
 	    margin: 0 0;
@@ -6962,7 +6966,7 @@ body.template-checkout {
 
 	h3 {
 	    font-weight: 700;
-	    color: #dab203;
+	    color: #e81f2d;
 	    line-height: 24px;
 	    font-size: 1.500em;
 	    margin: 0 0;
@@ -6986,11 +6990,11 @@ body.template-checkout {
 	a.btn.cart_checkout_button {
 	    font-family: 'circularBold', Arial, sans-serif;
 	    padding: 17px;
-	    border: 1px solid #dab203;
+	    border: 1px solid #e81f2d;
 	    border-radius: 0px;
 	    text-transform: uppercase;
 	    height: auto;
-	    color: #dab203;
+	    color: #e81f2d;
 	    letter-spacing: 0.1em;
 	    width: auto;
 	    font-size: 17px;
@@ -7061,7 +7065,7 @@ body.template-checkout {
 	}
 
 	.cart_item select {
-	    background-color: #dab203 !important;
+	    background-color: #e81f2d !important;
 	    color: #ffffff !important;
 	    -webkit-transition: none !important;
 	    -o-transition: none !important;
@@ -7201,7 +7205,7 @@ body.template-checkout {
 		}
 
 		.portletHeader > a {
-			color: #dab203;
+			color: #e81f2d;
 		}
 
 		.cal_has_events a:after {
@@ -7312,7 +7316,7 @@ body.template-checkout {
 	    padding-bottom: 0.25em;
 	    border-bottom: 0.1em solid #bbb;
 	    font-weight: 700;
-	    color: #dab203;
+	    color: #e81f2d;
 	    line-height: 36px;
 	    font-size: 1.350em !important;
 	    margin: 0 0;
@@ -7430,11 +7434,11 @@ body.template-checkout {
 	#input-checkout-finish {
 	    font-family: 'circularBold', Arial, sans-serif;
 	    padding: 17px;
-	    border: 1px solid #dab203;
+	    border: 1px solid #e81f2d;
 	    border-radius: 0px;
 	    text-transform: uppercase;
 	    height: auto;
-	    color: #dab203;
+	    color: #e81f2d;
 	    letter-spacing: 0.1em;
 	    width: auto;
 	    font-size: 17px;
@@ -7832,7 +7836,7 @@ body i.glyphicon.link-https {
 
 @media (min-width: 1081px) {
 	#website-nav a.navbar-brand img.website-logo-menu {
-		width: 310px !important;
+		width: 185px !important;
 		height: 28px;
 		margin-left: 14px;
 	}
@@ -8248,7 +8252,7 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 	}
 
 	@media(min-width: 992px) {
-		#column-collective-portletpage-toprow-portlet-nu-te-zien {
+		#column-collective-portletpage-toprow-portlet-historiehuis {
 			.portlet-item {
 				width: 50% !important;
 			}
@@ -8364,6 +8368,67 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 .portaltype-occurrence li.event-dates {
 	display: none !important;
 }	
+
+@media(max-width: 767px) {
+	#website-wrapper {
+		box-shadow: none !important;
+		margin-bottom: 0 !important;
+	}
+
+	footer {
+		z-index: 0 !important;
+		position: initial !important;
+		bottom: 0px !important;
+		width: auto !important;
+	}
+}
+
+#website-wrapper{
+	box-shadow: none !important;
+}
+
+
+footer#above .portletWrapper:last-child {
+	display: none !important;
+}
+
+footer#below {
+	padding-top: 0px !important;
+	margin-top: -20px !important;
+
+	@media(max-width: 991px) {
+		.container {
+			padding-left: 0px;
+			padding-right: 0px;
+		}
+	}
+}
+
+footer#above .portletWrapper:last-child {
+	display: none !important;
+}
+
+footer#below {
+	padding-top: 0px !important;
+	margin-top: -20px !important;
+
+	@media(max-width: 991px) {
+		.container {
+			padding-left: 0px;
+			padding-right: 0px;
+		}
+	}
+}
+
+#share-settings > .row {
+	visibility: hidden !important;
+
+	iframe {
+		visibility: hidden !important;
+	}
+}
+
+
 
 
 

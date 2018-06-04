@@ -18,7 +18,7 @@
           </span>
         </a>
         <a class="navbar-brand" href="/">
-          <img src="/nl/intk/images/website-logo.svg" class="website-logo-menu"/>
+          <img src="/nl/intk/images/website-logo.svg" class="website-logo-menu">
         </a>
         <img src="/nl/intk/images/icon-search-blue.svg" style="display: none;"/>
       </div>
@@ -46,30 +46,42 @@
                   <span class="fa fa-angle-down"></span>
                 </a>
               </tal:testlang>
-              <tal:testlang tal:condition="python: language != 'en'">
+              <tal:testlang tal:condition="python: language == 'nl'">
+                <a href="#" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                  NL
+                  <span class="fa fa-caret-down"></span>
+                </a>
+              </tal:testlang>
+              <tal:testlang tal:condition="python: language == 'de'">
+                <a href="#" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                  DE
+                  <span class="fa fa-caret-down"></span>
+                </a>
+              </tal:testlang>
+              <tal:testlang tal:condition="python: language not in ['de', 'nl', 'en']">
                 <a href="#" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
                   NL
                   <span class="fa fa-caret-down"></span>
                 </a>
               </tal:testlang>
               <ul class="submenu dropdown-menu">
-                <li>
+                
                   <tal:testlang tal:condition="python: language == 'en'">
-                    <a href="#" tal:attributes="href python: '/@@multilingual-selector/'+view.getTranslationGroup()+'/nl?set_language=nl'" class="clearfix">NL</a>
+                    <li><a href="#" tal:attributes="href python: '/@@multilingual-selector/'+view.getTranslationGroup()+'/nl?set_language=nl'" class="clearfix">NL</a></li>
+                    <li><a href="#" tal:attributes="href python: '/@@multilingual-selector/'+view.getTranslationGroup()+'/de?set_language=de'" class="clearfix">DE</a></li>
                   </tal:testlang>
-                  <tal:testlang tal:condition="python: language != 'en'">
-                    <a href="#" tal:attributes="href python: '/@@multilingual-selector/'+view.getTranslationGroup()+'/en?set_language=en'" class="clearfix">
-                      EN
-                    </a>
+                  <tal:testlang tal:condition="python: language == 'nl'">
+                    <li><a href="#" tal:attributes="href python: '/@@multilingual-selector/'+view.getTranslationGroup()+'/en?set_language=en'" class="clearfix">EN</a></li>
+                    <li><a href="#" tal:attributes="href python: '/@@multilingual-selector/'+view.getTranslationGroup()+'/de?set_language=de'" class="clearfix">DE</a></li>
                   </tal:testlang>
-                </li>
-                <!--<tal:extra_lang tal:repeat="extra_lang extra_languages">
-                  <li class="extra-lang">
-                    <a href="#" tal:attributes="href python: extra_lang.get('url', '')" tal:content="python: extra_lang.get('id', '')" class="clearfix">
-                      DE
-                    </a>
-                  </li>
-                </tal:extra_lang>-->
+                  <tal:testlang tal:condition="python: language == 'de'">
+                    <li><a href="#" tal:attributes="href python: '/@@multilingual-selector/'+view.getTranslationGroup()+'/en?set_language=en'" class="clearfix">EN</a></li>
+                    <li><a href="#" tal:attributes="href python: '/@@multilingual-selector/'+view.getTranslationGroup()+'/nl?set_language=nl'" class="clearfix">NL</a></li>
+                  </tal:testlang>
+                  <tal:testlang tal:condition="python: language not in ['de', 'nl', 'en']">
+                    <li><a href="#" tal:attributes="href python: '/@@multilingual-selector/'+view.getTranslationGroup()+'/en?set_language=en'" class="clearfix">EN</a></li>
+                    <li><a href="#" tal:attributes="href python: '/@@multilingual-selector/'+view.getTranslationGroup()+'/de?set_language=de'" class="clearfix">DE</a></li>
+                  </tal:testlang>
               </ul>
             </li>
           </ul>

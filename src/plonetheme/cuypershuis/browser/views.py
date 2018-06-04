@@ -16,6 +16,19 @@ import time
 
 class ContextToolsView(BrowserView):
 
+    def getImageObject(self, item, scale="large"):
+        if item.portal_type == "Image":
+            return item.getURL()+"/@@images/image/%s" %(scale)
+        if item.leadMedia != None:
+            uuid = item.leadMedia
+            media_object = uuidToCatalogBrain(uuid)
+            if media_object:
+                return media_object.getURL()+"/@@images/image/%s" %(scale)
+            else:
+                return None
+        else:
+            return None
+            
     def isEventPast(self, event):
         """ Checks if the event is already past """
         if event.portal_type != 'Event':
