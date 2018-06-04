@@ -207,7 +207,7 @@ jQuery(document).ready(function($) {
      document.documentElement.className+=' ie'+document.documentMode;
   }
 
-  jQuery("footer").footerReveal();
+  jQuery("footer#below").footerReveal();
 
 
   if (jQuery("body.portaltype-portlet-page")) {

@@ -232,9 +232,13 @@
         </replace>
       </rules>
 
-      <replace css:theme-children="footer .container" css:content-children="#portal-footer-wrapper" />
+      <replace css:theme-children="footer#above .container" css:content-children="#portal-footer-wrapper" />
+      <replace css:theme-children="footer#below .container" css:content="#portal-footer-wrapper .portlet-static-ontdek-ook" />
+
       <!--<after css:theme-children=".main-content" css:content=".portlet-rrssb" method="raw"/>
       <drop css:content="footer .portlet-rrssb"/>-->
+
+
 
       <!-- Mailchimp portlet -->
       <replace css:content-children=".portletMailChimp">

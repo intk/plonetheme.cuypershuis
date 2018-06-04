@@ -842,12 +842,12 @@
 body {
 	background-color: #ffffff;
 	overflow-x: hidden;
-	height: 100%;
+	min-height: 100%;
 }
 
 html {
 	background-color: #ffffff;
-	height: 100%;
+	min-height: 100%;
 }
 
 abbr[title],
@@ -2569,7 +2569,7 @@ body:not(.frontend).portaltype-formfolder {
 }
 
 /* FOOTER */
-footer, body.mce-content-body {
+footer, body.mce-content-body, #below-footer-portlet {
 	.documentLayout();
 
 	@media (min-width: 992px) {
@@ -2718,16 +2718,18 @@ footer, body.mce-content-body {
 body.portaltype-folder,
 body.portaltype-collection,
 body:not(.portaltype-document):not(.portaltype-event) {
-	footer {
+	footer, #below-footer-portlet {
 		border-top: 0px;
 	}
 }
 
-.plone-toolbar-left-default footer > .container {
+.plone-toolbar-left-default footer > .container,
+.plone-toolbar-left-default #below-footer-portlet > .container {
 	width: 100% !important;
 }
 
-.plone-toolbar-left-expanded footer > .container {
+.plone-toolbar-left-expanded footer > .container,
+.plone-toolbar-left-expanded #below-footer-portlet > .container {
 	width: 100% !important;
 }
 
@@ -2735,7 +2737,7 @@ body:not(.portaltype-document):not(.portaltype-event) {
 	border: 0px;
 }
 
-footer {
+footer, #below-footer-portlet {
 
 	background-color: @brand-primary-beige;
 	margin-top: 80px;
@@ -3400,7 +3402,8 @@ div.occurrence {
     font-size: 12px;
 }
 
-body:not(.frontend) footer > .container {
+body:not(.frontend) footer > .container,
+body:not(.frontend) #below-footer-portlet {
 	width: 100%;
 }
 
@@ -4570,7 +4573,7 @@ body.template-online_experience {
 		}
 	}
 
-	footer {
+	footer, #below-footer-portlet {
 		padding-top: 0px;
 	}
 }
@@ -8367,20 +8370,35 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 
 
 @media(max-width: 991px) {
-	#website-wrapper {
-		box-shadow: none !important;
-		margin-bottom: 0 !important;
-	}
-
-	footer {
-		z-index: 0 !important;
-		position: initial !important;
-		bottom: 0px !important;
-		width: auto !important;
-	}
+	
 }
 
 #website-wrapper{
 	box-shadow: none !important;
+}
+
+
+footer#above .portletWrapper:last-child {
+	display: none !important;
+}
+
+footer#below {
+	padding-top: 0px !important;
+	margin-top: -20px !important;
+
+	@media(max-width: 991px) {
+		.container {
+			padding-left: 0px;
+			padding-right: 0px;
+		}
+	}
+}
+
+#share-settings > .row {
+	visibility: hidden !important;
+
+	iframe {
+		visibility: hidden !important;
+	}
 }
 
