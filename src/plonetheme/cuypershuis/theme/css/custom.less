@@ -2569,7 +2569,7 @@ body:not(.frontend).portaltype-formfolder {
 }
 
 /* FOOTER */
-footer, body.mce-content-body, #below-footer-portlet {
+footer, body.mce-content-body {
 	.documentLayout();
 
 	@media (min-width: 992px) {
@@ -2718,18 +2718,16 @@ footer, body.mce-content-body, #below-footer-portlet {
 body.portaltype-folder,
 body.portaltype-collection,
 body:not(.portaltype-document):not(.portaltype-event) {
-	footer, #below-footer-portlet {
+	footer {
 		border-top: 0px;
 	}
 }
 
-.plone-toolbar-left-default footer > .container,
-.plone-toolbar-left-default #below-footer-portlet > .container {
+.plone-toolbar-left-default footer > .container {
 	width: 100% !important;
 }
 
-.plone-toolbar-left-expanded footer > .container,
-.plone-toolbar-left-expanded #below-footer-portlet > .container {
+.plone-toolbar-left-expanded footer > .container {
 	width: 100% !important;
 }
 
@@ -2737,7 +2735,7 @@ body:not(.portaltype-document):not(.portaltype-event) {
 	border: 0px;
 }
 
-footer, #below-footer-portlet {
+footer {
 
 	background-color: @brand-primary-beige;
 	margin-top: 80px;
@@ -3402,8 +3400,7 @@ div.occurrence {
     font-size: 12px;
 }
 
-body:not(.frontend) footer > .container,
-body:not(.frontend) #below-footer-portlet {
+body:not(.frontend) footer > .container {
 	width: 100%;
 }
 
@@ -4573,7 +4570,7 @@ body.template-online_experience {
 		}
 	}
 
-	footer, #below-footer-portlet {
+	footer {
 		padding-top: 0px;
 	}
 }
@@ -8369,14 +8366,40 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 }	
 
 
-@media(max-width: 991px) {
-	
+@media(max-width: 767px) {
+	#website-wrapper {
+		box-shadow: none !important;
+		margin-bottom: 0 !important;
+	}
+
+	footer {
+		z-index: 0 !important;
+		position: initial !important;
+		bottom: 0px !important;
+		width: auto !important;
+	}
 }
 
 #website-wrapper{
 	box-shadow: none !important;
 }
 
+
+footer#above .portletWrapper:last-child {
+	display: none !important;
+}
+
+footer#below {
+	padding-top: 0px !important;
+	margin-top: -20px !important;
+
+	@media(max-width: 991px) {
+		.container {
+			padding-left: 0px;
+			padding-right: 0px;
+		}
+	}
+}
 
 footer#above .portletWrapper:last-child {
 	display: none !important;
