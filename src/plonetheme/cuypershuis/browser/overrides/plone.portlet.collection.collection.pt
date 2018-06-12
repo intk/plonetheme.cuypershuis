@@ -57,7 +57,7 @@
                        is_permanent python: context.restrictedTraverse('@@context_tools').isEventPermanent(obj);">
             <p class="event-date" tal:attributes="class python: 'event-date %s %s' % (('past' if is_past else ''), ('permanent' if is_permanent.get('is_permanent', False) else ''))">
             
-            <tal:date tal:replace="structure python:view.formatted_date(obj)" tal:condition="python: not is_permanent.get('is_permanent', '')"/>
+            <tal:date tal:replace="structure python:context.restrictedTraverse('@@context_tools').formatted_date(obj)" tal:condition="python: not is_permanent.get('is_permanent', '')"/>
             <span tal:content="python: is_permanent.get('title', '')" tal:condition="is_permanent"></span>
             
             <span tal:condition="obj/location" i18n:translate="label_event_byline_location">&mdash;

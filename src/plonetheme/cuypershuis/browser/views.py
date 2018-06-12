@@ -12,9 +12,32 @@ from plone.app.uuid.utils import uuidToCatalogBrain
 from datetime import date, datetime, timedelta
 from DateTime import DateTime
 import time
-
+from zope.contentprovider.interfaces import IContentProvider
+from zope.component import getMultiAdapter
 
 class ContextToolsView(BrowserView):
+
+
+    def formatted_date(self, obj):
+        item = obj.getObject()
+        provider = getMultiAdapter(
+            (self.context, self.request, self),
+            IContentProvider, name='formatted_date'
+        )
+        return provider(item)
+
+    def getImageObject(self, item, scale="large"):
+        if item.portal_type == "Image":
+            return item.getURL()+"/@@images/image/%s" %(scale)
+        if item.leadMedia != None:
+            uuid = item.leadMedia
+            media_object = uuidToCatalogBrain(uuid)
+            if media_object:
+                return media_object.getURL()+"/@@images/image/%s" %(scale)
+            else:
+                return None
+        else:
+            return None
 
     def isEventPast(self, event):
         """ Checks if the event is already past """
