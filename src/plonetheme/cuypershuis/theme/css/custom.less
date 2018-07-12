@@ -6002,7 +6002,7 @@ body.frontend.template-advancedsearch {
 }
 
 /* OBJECT Logged in view */
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
 	body.frontend.portaltype-object.userrole-authenticated #content-core,
 	body.frontend.portaltype-personorinstitution.userrole-authenticated #content-core,
 	body.frontend.portaltype-taxonomie.userrole-authenticated #content-core,
@@ -6019,7 +6019,7 @@ body.frontend.template-advancedsearch {
 	    width: auto;
 	    margin: 0 auto;
 	}
-}
+}*/
 
 /* OBJECT edit and logged in view */
 body.portaltype-object,
@@ -6567,6 +6567,19 @@ body.disable-hover .entries * {
 html.ie11,
 html.ie10,
 html.ie9 {
+	height: 100%;
+
+	body {
+		height: 100%;
+	}
+	
+
+	footer#above {
+		margin-top: 0px !important;
+		padding-top: 80px !important;	
+	}
+
+
 	input[type="text"]:not(.btn):not(.text-widget),
 	input[type="button"]:not(.btn),
 	input[type="password"]:not(.btn) {
