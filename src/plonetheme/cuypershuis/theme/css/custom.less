@@ -874,14 +874,8 @@ abbr {
 }
 
 body:not(.frontend) {
-	span.label {
-		color: #333;
-	}
-
 	footer {
-		.fa-lg {
-    		font-size: 1.85em !important;
-    	}
+		
 	}
 }
 
@@ -1375,7 +1369,7 @@ body.frontend, body#tinymce {
     	}
     }
 
-    &:not(.portaltype-document):not(.portaltype-collection):not(.portaltype-folder):not(.portaltype-formfolder):not(.portaltype-event) {
+    &:not(.portaltype-document):not(.portaltype-collection):not(.portaltype-folder):not(.portaltype-formfolder):not(.portaltype-event):not(.portaltype-lrf) {
     	.separator-wrapper:not(.kasteel) {
     		display: none;
     	}
@@ -1683,6 +1677,7 @@ body.frontend, body#tinymce {
 	/* Multiple content page */
 	&.portaltype-collection, 
 	&.portaltype-folder,
+	&.portaltype-lrf,
 	.portletCollection {
 		.title-container {
 			h1 {
@@ -2578,8 +2573,16 @@ footer, body.mce-content-body {
 		}
 	}
 
+	.input-group-btn .submit-button {
+		
+	}
+
 	.portletWrapper:last-child {
 		float: none !important;
+	}
+
+	img.image-inline {
+  		padding-top: 28px;
 	}
 
 	@media (min-width: 992px) {
@@ -2597,6 +2600,9 @@ footer, body.mce-content-body {
 		}
 
 		
+	}
+	.portlet.portletMailChimp {
+		box-shadow: none !important;
 	}
 
 	.see-also-footer {
@@ -2717,6 +2723,7 @@ footer, body.mce-content-body {
 
 body.portaltype-folder,
 body.portaltype-collection,
+body.portaltype-lrf,
 body:not(.portaltype-document):not(.portaltype-event) {
 	footer {
 		border-top: 0px;
@@ -3288,8 +3295,8 @@ body.portaltype-collection footer {
 		padding-left: 22px;
 		padding-right: 22px;
 		line-height: 10px;
-	    padding-top: 20px;
-	    padding-bottom: 16px;
+	    padding-top: 19px;
+	    padding-bottom: 19px;
 	}
 
 	button {
@@ -4665,7 +4672,8 @@ body.frontend:not(.portaltype-event) {
 }
 
 body.frontend.portaltype-collection,
-body.frontend.portaltype-folder {
+body.frontend.portaltype-folder,
+body.frontend.portaltype-lrf {
     .title-container {
     	@media (min-width: 768px) {
     		padding-bottom: 0px;
@@ -5290,7 +5298,8 @@ body.frontend.mobile {
 
 body.frontend {
 	&.portaltype-collection,
-	&.portaltype-folder {
+	&.portaltype-folder,
+	&.portaltype-lrf {
 		#content-core {
 			.pagination {
 				padding-bottom: 70px;
@@ -6607,6 +6616,10 @@ html.ie9 {
 				border-bottom: 1px solid transparent !important;
 			}
 		}
+	}
+
+	div.website-wrapper {
+		background: #ffffff;
 	}
 }
 
@@ -7993,13 +8006,13 @@ body.frontend #below-content .belowcontent-portlets .col-xs-12 {
 }
 
 
-body.frontend.site-en {
+body.site-en {
 	.mailchimp-btn-text.nl {
 		display: none !important;
 	}
 }
 
-body.frontend.site-nl {
+body.site-nl {
 	.mailchimp-btn-text.en {
 		display: none !important;
 	}
@@ -8183,7 +8196,7 @@ body.template-default_error_message {
 	}
 }
 
-body.portaltype-folder, body.portaltype-collection, body.portaltype-formfolder, body.template-fg_thankspage_view_p3 {
+body.portaltype-folder, body.portaltype-lrf, body.portaltype-collection, body.portaltype-formfolder, body.template-fg_thankspage_view_p3 {
 	.portlet-rrssb {
 		display: none !important;
 	}
