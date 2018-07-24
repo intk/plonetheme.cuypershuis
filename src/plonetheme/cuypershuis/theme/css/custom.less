@@ -6581,20 +6581,20 @@ html.ie9 {
 	body {
 		height: 100%;
 	}
-	
 
 	footer#above {
 		margin-top: 0px !important;
 		padding-top: 80px !important;	
 	}
 
-
-	input[type="text"]:not(.btn):not(.text-widget),
-	input[type="button"]:not(.btn),
-	input[type="password"]:not(.btn) {
-		line-height: 20px !important;
-	    padding-bottom: 16px !important;
-	    padding-top: 16px !important;
+	body.frontend {
+		input[type="text"]:not(.btn):not(.text-widget),
+		input[type="button"]:not(.btn),
+		input[type="password"]:not(.btn) {
+			line-height: 20px !important;
+		    padding-bottom: 16px !important;
+		    padding-top: 16px !important;
+		}
 	}
 
 	.portletMailChimp {
@@ -8342,10 +8342,9 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 		a:focus,
 		a:active {
 			h3.item-title {
-				border-bottom: 2px solid #ffffff !important;
+				text-decoration: underline !important;
 
 				@media(max-width: 768px) {
-					border-bottom: 2px solid transparent !important;
 					text-decoration: underline !important;
 				}
 			}
@@ -8458,7 +8457,7 @@ footer#below {
 
 footer#below {
 	@media (min-width: 992px) { 
-		background: #445071 !important;
+		
 	}
 }
 

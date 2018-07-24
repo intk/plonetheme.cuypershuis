@@ -16,7 +16,17 @@ from zope.contentprovider.interfaces import IContentProvider
 from zope.component import getMultiAdapter
 
 class ContextToolsView(BrowserView):
-
+    def trimText(self, text, limit):
+        if text != None:        
+            if len(text) > limit: 
+                res = text[0:limit]
+                lastspace = res.rfind(" ")
+                res = res[0:lastspace] + " ..."
+                return res
+            else:
+                return text
+        else:
+            return ""
 
     def formatted_date(self, obj):
         item = obj.getObject()

@@ -28,7 +28,7 @@
                 item_url item/getURL;
                 item_id item/getId;
                 item_title item/Title;
-                item_description item/Description;
+                item_description python: context.restrictedTraverse('@@context_tools').trimText(item.Description(), 200);
                 item_type item/PortalType;
                 item_on_display item/object_on_display|nothing;
                 item_modified item/ModificationDate;

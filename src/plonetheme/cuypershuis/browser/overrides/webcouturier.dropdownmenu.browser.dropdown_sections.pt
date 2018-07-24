@@ -46,23 +46,48 @@
                   <span class="fa fa-angle-down"></span>
                 </a>
               </tal:testlang>
-              <tal:testlang tal:condition="python: language != 'en'">
+              <tal:testlang tal:condition="python: language == 'de'">
+                <a href="#" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                  DE
+                  <span class="fa fa-caret-down"></span>
+                </a>
+              </tal:testlang>
+              <tal:testlang tal:condition="python: language not in ['en', 'de']">
                 <a href="#" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
                   NL
                   <span class="fa fa-caret-down"></span>
                 </a>
               </tal:testlang>
+
               <ul class="submenu dropdown-menu">
-                <li>
+            
                   <tal:testlang tal:condition="python: language == 'en'">
-                    <a href="#" tal:attributes="href python: '/@@multilingual-selector/'+view.getTranslationGroup()+'/nl?set_language=nl'" class="clearfix">NL</a>
+                    <li>
+                      <a href="#" tal:attributes="href python: view.get_language('nl')" class="clearfix">NL</a>
+                    </li>
+                    <li>
+                      <a href="#" tal:attributes="href python: view.get_language('de')" class="clearfix">DE</a>
+                    </li>
                   </tal:testlang>
-                  <tal:testlang tal:condition="python: language != 'en'">
-                    <a href="#" tal:attributes="href python: '/@@multilingual-selector/'+view.getTranslationGroup()+'/en?set_language=en'" class="clearfix">
+
+                  <tal:testlang tal:condition="python: language == 'de'">
+                    <li><a href="#" tal:attributes="href python: view.get_language('nl')" class="clearfix">
+                      NL
+                    </a></li>
+                    <li><a href="#" tal:attributes="href python: view.get_language('en')" class="clearfix">
                       EN
-                    </a>
+                    </a></li>
                   </tal:testlang>
-                </li>
+
+                  <tal:testlang tal:condition="python: language not in ['en', 'de']">
+                    <li><a href="#" tal:attributes="href python: view.get_language('en')" class="clearfix">
+                      EN
+                    </a></li>
+                    <li><a href="#" tal:attributes="href python: view.get_language('de')" class="clearfix">
+                      DE
+                    </a></li>
+                  </tal:testlang>
+              
                 <!--<tal:extra_lang tal:repeat="extra_lang extra_languages">
                   <li class="extra-lang">
                     <a href="#" tal:attributes="href python: extra_lang.get('url', '')" tal:content="python: extra_lang.get('id', '')" class="clearfix">

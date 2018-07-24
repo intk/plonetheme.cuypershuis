@@ -82,7 +82,7 @@
         
 
         <div>
-          <p tal:content="obj/Description" class="item-description"></p>
+          <p tal:content="python: context.restrictedTraverse('@@context_tools').trimText(obj.Description(), 200)" class="item-description"></p>
         </div>
 
     </div>
