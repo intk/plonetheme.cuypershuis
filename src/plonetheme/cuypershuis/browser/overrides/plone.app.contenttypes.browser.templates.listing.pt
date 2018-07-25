@@ -41,6 +41,7 @@
                 has_media nocall:item/leadMedia;
                 item_link python:item_type in view.use_view_action and item_url+'/view' or item_url;                
                 item_is_event python:item_type in ['Event', 'Exhibition'];
+                item_is_news_item python:item_type in ['News Item'];
                 item_has_image python:item.getIcon;
                 context_portal_type context/portal_type|nothing;
                 item_index repeat/item/index;"
@@ -65,12 +66,15 @@
                           <div>
                           <metal:block metal:define-macro="document_byline">
                             
-                            <tal:event condition="item_is_event"
+                            <tal:event condition="python: item_is_event or item_is_news_item"
                              tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(item);
                                          is_permanent python: context.restrictedTraverse('@@context_tools').isEventPermanent(item);">
                               <p class="event-date" tal:attributes="class python: 'event-date %s %s' % (('past' if is_past else ''), ('permanent' if is_permanent.get('is_permanent', False) else ''))">
                               
-                              <tal:date tal:replace="structure python:context.restrictedTraverse('@@context_tools').formatted_date(item)" tal:condition="python: not is_permanent.get('is_permanent', '')"/>
+                              <tal:date tal:replace="structure python:context.restrictedTraverse('@@context_tools').formatted_date(item)" tal:condition="python: not is_permanent.get('is_permanent', '') and item_is_event"/>
+
+                              <tal:news_item_date tal:replace="python:context.restrictedTraverse('@@context_tools').get_pub_date(item)" tal:condition="item_is_news_item"/>
+
                               <span tal:content="python: is_permanent.get('title', '')" tal:condition="is_permanent"></span>
                               
                               <span tal:condition="item/location" i18n:translate="label_event_byline_location">&mdash;

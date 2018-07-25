@@ -9,9 +9,11 @@
     tal:attributes="class string:portlet portletCollection ${view/css_class}">
     <header class="portletHeader">
         <span class="portletTopLeft"></span>
+        
         <a tal:attributes="href collection_url" tal:omit-tag="not:view/data/show_more">
             <h1 class="portlet-title-header"> <span tal:content="view/data/header" ></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>.</h1>
         </a>
+
         <h2 tal:content="collection_item/Description" tal:condition="collection_item/Description"></h2>
         <span class="portletTopRight"></span>
     </header>
@@ -32,6 +34,7 @@
                     item_on_display python: getattr(obj, 'object_on_display', None);
                     item_type_class python:'contenttype-' + plone_view.normalizeString(item_type);
                     item_is_event python: item_type in ['Event', 'Exhibition'];
+                    item_is_news_item python:item_type in ['News Item'];
                     item_index repeat/obj/index;
                     "
         tal:attributes="class portlet_class">
@@ -52,12 +55,14 @@
         
         <div>
           <metal:block metal:define-macro="document_byline">
-          <tal:event condition="item_is_event"
+          <tal:event condition="python: item_is_event or item_is_news_item"
            tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(obj);
                        is_permanent python: context.restrictedTraverse('@@context_tools').isEventPermanent(obj);">
             <p class="event-date" tal:attributes="class python: 'event-date %s %s' % (('past' if is_past else ''), ('permanent' if is_permanent.get('is_permanent', False) else ''))">
             
-            <tal:date tal:replace="structure python:context.restrictedTraverse('@@context_tools').formatted_date(obj)" tal:condition="python: not is_permanent.get('is_permanent', '')"/>
+            <tal:date tal:replace="structure python:context.restrictedTraverse('@@context_tools').formatted_date(obj)" tal:condition="python: not is_permanent.get('is_permanent', '') and item_is_event"/>
+            <tal:news_item_date tal:replace="python:context.restrictedTraverse('@@context_tools').get_pub_date(obj)" tal:condition="item_is_news_item"/>
+
             <span tal:content="python: is_permanent.get('title', '')" tal:condition="is_permanent"></span>
             
             <span tal:condition="obj/location" i18n:translate="label_event_byline_location">&mdash;

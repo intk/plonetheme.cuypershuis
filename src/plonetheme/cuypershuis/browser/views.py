@@ -15,6 +15,8 @@ import time
 from zope.contentprovider.interfaces import IContentProvider
 from zope.component import getMultiAdapter
 
+from Products.CMFCore.utils import getToolByName
+
 class ContextToolsView(BrowserView):
     def trimText(self, text, limit):
         if text != None:        
@@ -27,6 +29,22 @@ class ContextToolsView(BrowserView):
                 return text
         else:
             return ""
+
+    def toLocalizedTime(self, time, long_format=None, time_only=None):
+        """Convert time to localized time
+        """
+        util = getToolByName(self.context, 'translation_service')
+        return util.ulocalized_time(time, long_format, time_only, self.context,
+                                    domain='plonelocales')
+
+    def get_pub_date(self, item):
+        try:
+            date = item.EffectiveDate()
+            if not date or date == 'None':
+                return None
+            return self.toLocalizedTime(DateTime(date))
+        except:
+            return None
 
     def formatted_date(self, obj):
         item = obj.getObject()
