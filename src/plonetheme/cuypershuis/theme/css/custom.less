@@ -8475,7 +8475,7 @@ footer#below:before {
 	}
 }
 
-body.frontend.portaltype-portlet-page #content-core #column-collective-portletpage-toprow-portlet-nieuws {
+body.frontend.portaltype-portlet-page:not(.subsection-nieuws) #content-core #column-collective-portletpage-toprow-portlet-nieuws {
 	.portletCollection {
 		padding-bottom: 0px;
 
@@ -8513,6 +8513,13 @@ body.frontend.portaltype-portlet-page #content-core #column-collective-portletpa
 			}
 		}
 
+	}
+}
+
+body.site-en,
+body.site-de {
+	.menu-search-button a {
+		display: none !important;
 	}
 }
 

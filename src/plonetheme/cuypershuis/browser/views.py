@@ -18,6 +18,17 @@ from zope.component import getMultiAdapter
 from Products.CMFCore.utils import getToolByName
 
 class ContextToolsView(BrowserView):
+
+    def getCollectionItems(self, item):
+        collection = item.getObject()
+
+        results = []
+        if collection is not None:
+            results = collection.queryCatalog()
+
+        return results
+
+        
     def trimText(self, text, limit):
         if text != None:        
             if len(text) > limit: 
