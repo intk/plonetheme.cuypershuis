@@ -68,7 +68,7 @@ class ContextToolsView(BrowserView):
     def getImageObject(self, item, scale="large"):
         if item.portal_type == "Image":
             return item.getURL()+"/@@images/image/%s" %(scale)
-        if item.leadMedia != None:
+        if getattr(item,'leadMedia', None) != None:
             uuid = item.leadMedia
             media_object = uuidToCatalogBrain(uuid)
             if media_object:

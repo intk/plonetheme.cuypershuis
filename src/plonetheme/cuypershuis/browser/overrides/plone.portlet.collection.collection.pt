@@ -7,7 +7,44 @@
                 toLocalizedTime nocall:plone_view/toLocalizedTime;
                 viewActions python:context.portal_registry.get('plone.types_use_view_action_in_listings', []);"
     tal:attributes="class string:portlet portletCollection ${view/css_class}">
-    <header class="portletHeader">
+    
+
+
+
+    <tal:quote tal:condition="view/data/show_quote">
+      <tal:items tal:repeat="obj python: view.results()">
+        <tal:item 
+        tal:define="item_description obj/Description;
+                    item_title obj/Title;
+                    item_type python:obj.portal_type;
+                    useView python:item_type in viewActions;
+                    itemUrl python:useView and obj.getURL() + '/view' or obj.getURL();
+                    item_img python:context.restrictedTraverse('@@context_tools').getImageObject(obj, 'large');">
+
+          <div class="container-fluid" id="row-items">
+            <div class="quote-section col-xs-12">
+              
+
+              <div class="quote-image-wrapper">
+                <img tal:condition="python: item_img != None" tal:attributes="src item_img; alt item_title; title item_title;" /> 
+              </div>
+
+              <div class="quote-details-wrapper">
+                <h2 class="item-title"><a href="#" tal:attributes="href itemUrl;" tal:content="item_title">Title</a></h2>
+                <p class="item-description" tal:content="item_description"></p>
+                <a href="#">
+                 <input i18n:attributes="value more_url" type="submit" class="btn-default show-more" value="More&hellip;"/>
+                </a>
+              </div>
+            </div>
+          </div>
+        </tal:item>
+      </tal:items>
+    </tal:quote>
+
+
+    <tal:notquote tal:condition="not:view/data/show_quote">
+      <header class="portletHeader">
         <span class="portletTopLeft"></span>
         
         <a tal:attributes="href collection_url" tal:omit-tag="not:view/data/show_more">
@@ -27,7 +64,7 @@
                     item_type python:obj.portal_type;
                     useView python:item_type in viewActions;
                     itemUrl python:useView and obj.getURL() + '/view' or obj.getURL();
-                    portlet_class python: 'col-lg-%s col-md-%s col-sm-6 col-xs-12 portlet-item %s' %('6' if number > 3 or ('/tentoonstellingen' in itemUrl.lower() and view.data.header == 'Nu te zien') else '4', '6' if number > 3 else '4', '' if number > 3 else 'portlet-item-small') if context.portal_type in ['Portlet Page', 'Event', 'Document'] else 'col-lg-6 col-md-6 col-sm-6 col-xs-12 portlet-item';
+                    portlet_class python: 'col-lg-%s col-md-%s col-sm-6 col-xs-12 portlet-item %s' %('6' if number > 3 or ('/tentoonstellingen' in itemUrl.lower() and view.data.header in ['Nu te zien', 'Nu & verwacht']) else '4', '6' if number > 3 else '4', '' if number > 3 else 'portlet-item-small') if context.portal_type in ['Portlet Page', 'Event', 'Document'] else 'col-lg-6 col-md-6 col-sm-6 col-xs-12 portlet-item';
                     has_media nocall:obj/leadMedia;
                     item_on_display python: getattr(obj, 'object_on_display', None);
                     item_type_class python:'contenttype-' + plone_view.normalizeString(item_type);
@@ -44,7 +81,7 @@
 
         <div class="thumb-wrapper">         
           <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')" href="" tal:attributes="href python: itemUrl"
-            tal:define="item_img python:view.getImageObject(obj)">
+            tal:define="item_img python:context.restrictedTraverse('@@context_tools').getImageObject(obj, 'mini')">
             
             <img tal:define="images_src python:item_img;
                                "
@@ -108,7 +145,7 @@
                       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" tal:attributes="class portlet_class">
                         <div class="thumb-wrapper">
                           <a class="thumb-image" tal:condition="python: ((col_has_media != None and col_has_media != '') or col_item_type == 'Image')" href="" tal:attributes="href python: col_itemUrl"
-                            tal:define="col_item_img python:view.getImageObject(colitem)">
+                            tal:define="col_item_img python:context.restrictedTraverse('@@context_tools').getImageObject(colitem, 'mini')">
                             <img tal:define="col_images_src python:col_item_img;"
                                    src="" alt=""
                                    tal:attributes="src col_images_src; class python:'tileImage'; alt colitem/Title; title colitem/Title;" />
@@ -183,5 +220,10 @@
         </div>
         <span class="portletBottomRight"></span>
   </footer>
+
+    </tal:notquote>
+
+
+    
 
 </section>

@@ -8523,3 +8523,92 @@ body.site-de {
 	}
 }
 
+
+body.portaltype-portlet-page {
+	.portletCollection.portlet-collection-show-quote {
+		@media(max-width: 768px) {
+			#row-items {
+				padding-left: 15px !important;
+				padding-right: 15px !important;
+			}
+		}
+
+		@media(min-width: 769px) {
+			#row-items {
+				padding-left: 81px !important;
+				padding-right: 81px !important;
+			}
+		}
+	}
+
+	.portletCollection .quote-section {
+		min-height: 500px;
+		position: relative;
+		margin-bottom: 50px;
+
+		@media(min-width: 768px) {
+			margin-bottom: 80px;
+		}
+
+		@media(min-width: 992px) {
+			margin-bottom: 100px;
+		}
+
+		.quote-image-wrapper {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+
+			background-position: center center;
+		    background-size: cover;
+		    background-repeat: no-repeat;
+
+		    img {
+		    	object-fit: cover;
+		    	width: 100%;
+		    	height: 100%;
+		    	margin: 0 auto;
+		    }
+		}
+
+		.quote-details-wrapper {
+			position: relative;
+		    background: #ffffff;
+		    padding: 40px;
+		    margin-top: 50px;
+		    margin-bottom: 50px;
+		    margin-left: auto;
+		    margin-right: auto;
+		    width: 90%;
+		    
+
+		    input {
+		    	margin-left: 0;
+		    }
+
+
+		    h2 {
+		    	margin-top: 0px;
+
+		    }
+
+		    p.item-description {
+		    	margin-bottom: 30px;
+    			margin-top: 20px;
+		    }
+
+		    @media(min-width: 992px) {
+		    	margin-top: 125px;
+		    	margin-bottom: 125px;
+		    	margin-right: 40px;
+		    	margin-left: auto;
+		    	max-width: 450px;
+		    	padding: 55px;
+		    }
+		}
+	}
+
+}
+
