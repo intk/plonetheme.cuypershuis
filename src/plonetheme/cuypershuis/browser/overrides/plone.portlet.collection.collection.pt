@@ -44,16 +44,21 @@
 
 
     <tal:notquote tal:condition="not:view/data/show_quote">
-      <header class="portletHeader">
-        <span class="portletTopLeft"></span>
-        
-        <a tal:attributes="href collection_url" tal:omit-tag="not:view/data/show_more">
-            <h1 class="portlet-title-header"> <span tal:content="view/data/header" ></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>.</h1>
-        </a>
+      <tal:notfrontpage tal:condition="not:view/data/show_frontpage">
+        <header class="portletHeader">
+          <span class="portletTopLeft"></span>
+          
+          <a tal:attributes="href collection_url" tal:omit-tag="not:view/data/show_more">
+              
+              <h1 class="portlet-title-header" tal:condition="python: len(view.data.header) < 13"> <span tal:content="view/data/header" ></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>.</h1>
+              <h1 class="portlet-title-header" tal:condition="python: len(view.data.header) >= 13"> <span tal:content="view/data/header" ></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>.</h1>
+          </a>
 
-        <h2 tal:content="collection_item/Description" tal:condition="collection_item/Description"></h2>
-        <span class="portletTopRight"></span>
-    </header>
+          <h2 tal:content="collection_item/Description" tal:condition="collection_item/Description"></h2>
+          <span class="portletTopRight"></span>
+
+      </header>
+      </tal:notfrontpage>
 
 
   <div class="container-fluid" id="row-items">
@@ -77,11 +82,12 @@
 
     <tal:not_collection tal:condition="not:item_is_collection">
 
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" tal:attributes="class portlet_class">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" tal:attributes="class python: portlet_class if not view.data.show_frontpage else 'col-lg-12 col-md-12 col-sm-12 col-xs-12 portlet-item'">
 
         <div class="thumb-wrapper">         
           <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')" href="" tal:attributes="href python: itemUrl"
-            tal:define="item_img python:context.restrictedTraverse('@@context_tools').getImageObject(obj, 'mini')">
+            tal:define="img_scale python: 'large' if view.data.show_frontpage else 'mini';
+                        item_img python:context.restrictedTraverse('@@context_tools').getImageObject(obj, img_scale)">
             
             <img tal:define="images_src python:item_img;
                                "
@@ -90,24 +96,22 @@
           </a> 
         </div>
         
-        <div>
-          <metal:block metal:define-macro="document_byline">
-          <tal:event condition="python: item_is_event or item_is_news_item"
-           tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(obj);
-                       is_permanent python: context.restrictedTraverse('@@context_tools').isEventPermanent(obj);">
-            <p class="event-date" tal:attributes="class python: 'event-date %s %s' % (('past' if is_past else ''), ('permanent' if is_permanent.get('is_permanent', False) else ''))">
-            
-            <tal:date tal:replace="structure python:context.restrictedTraverse('@@context_tools').formatted_date(obj)" tal:condition="python: not is_permanent.get('is_permanent', '') and item_is_event"/>
-            <tal:news_item_date tal:replace="python:context.restrictedTraverse('@@context_tools').get_pub_date(obj)" tal:condition="item_is_news_item"/>
-
-            <span tal:content="python: is_permanent.get('title', '')" tal:condition="is_permanent"></span>
-            </p>
-          </tal:event>
-        </metal:block>
-        </div>
-
+        
         <div class="entry-wrapper">
-          
+            <tal:event condition="python: item_is_event or item_is_news_item"
+             tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(obj);
+                         is_permanent python: context.restrictedTraverse('@@context_tools').isEventPermanent(obj);">
+              <p class="event-date" tal:attributes="class python: 'event-date %s %s' % (('past' if is_past else ''), ('permanent' if is_permanent.get('is_permanent', False) else ''))">
+              
+              <tal:date tal:replace="structure python:context.restrictedTraverse('@@context_tools').formatted_date(obj)" tal:condition="python: not is_permanent.get('is_permanent', '') and item_is_event"/>
+              <tal:news_item_date tal:replace="python:context.restrictedTraverse('@@context_tools').get_pub_date(obj)" tal:condition="item_is_news_item"/>
+
+              <span tal:content="python: is_permanent.get('title', '')" tal:condition="is_permanent"></span>
+              </p>
+            </tal:event>
+
+            <p class="event-date" tal:condition="view/data/show_frontpage"><span tal:content="view/data/header"></span></p>
+
             <h2 class="item-title">
               <a href="#"
                tal:attributes="href itemUrl;"
@@ -115,17 +119,26 @@
                >
               Title
               </a>
-          </h2>
+            </h2>
+
+            <div class="portlet-item-description">
+              <p tal:content="python: context.restrictedTraverse('@@context_tools').trimText(obj.Description(), 200)" class="item-description"></p>
+            </div>
+
+            <div class="show-more-portlet-item" tal:condition="view/data/show_frontpage">
+              <a tal:attributes="href itemUrl">
+                <input i18n:attributes="value more_url" type="submit" class="btn-default show-more" value="More&hellip;"/>
+              </a>
+            </div>
         </div>
         
-
-        <div>
-          <p tal:content="python: context.restrictedTraverse('@@context_tools').trimText(obj.Description(), 200)" class="item-description"></p>
-        </div>
+        
 
     </div>
 
     </tal:not_collection>
+
+
 
     <tal:is_collection tal:condition="item_is_collection">
             <tal:collectionitems tal:define="colitems python: context.restrictedTraverse('@@context_tools').getCollectionItems(obj)">
