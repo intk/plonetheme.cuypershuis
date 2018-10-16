@@ -32,7 +32,7 @@
               <div class="quote-details-wrapper">
                 <h2 class="item-title"><a href="#" tal:attributes="href itemUrl;" tal:content="item_title">Title</a></h2>
                 <p class="item-description" tal:content="item_description"></p>
-                <a href="#">
+                <a href="#" tal:attributes="href itemUrl;">
                  <input i18n:attributes="value more_url" type="submit" class="btn-default show-more" value="More&hellip;"/>
                 </a>
               </div>
@@ -50,11 +50,14 @@
           
           <a tal:attributes="href collection_url" tal:omit-tag="not:view/data/show_more">
               
-              <h1 class="portlet-title-header" tal:condition="python: len(view.data.header) < 13"> <span tal:content="view/data/header" ></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>.</h1>
-              <h1 class="portlet-title-header" tal:condition="python: len(view.data.header) >= 13"> <span tal:content="view/data/header" ></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>.</h1>
+              <h1 class="portlet-title-header" tal:condition="python: len(view.data.header) < 13 and not view.data.hide_circle"> <span tal:content="view/data/header" ></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>.</h1>
+              <h1 class="portlet-title-header" tal:condition="python: len(view.data.header) >= 13 and not view.data.hide_circle" > <span tal:content="view/data/header" ></span>&nbsp;&nbsp;<span tal:content="view/data/header"></span>.</h1>
+
+              <h3 class="portlet-title-news-header" tal:condition="view/data/hide_circle" ><span tal:content="view/data/header" ></span></h3>
           </a>
 
           <h2 tal:content="collection_item/Description" tal:condition="collection_item/Description"></h2>
+
           <span class="portletTopRight"></span>
 
       </header>

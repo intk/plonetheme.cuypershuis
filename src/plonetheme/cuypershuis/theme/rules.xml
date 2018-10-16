@@ -251,7 +251,7 @@
           <form id="newsletter-subscriber-form" class="form-inline" role="form" method="post"><xsl:attribute name="action"><xsl:value-of select="div/dl/dd/form/@action"/></xsl:attribute>
             <div class="input-group">
               <input type="text"
-                class="text-widget required form-control input-lg textline-field" placeholder="Email" id="form-widgets-email" name="form.widgets.email"></input>
+                class="text-widget required form-control input-lg textline-field" placeholder="E-mail" id="form-widgets-email" name="form.widgets.email"></input>
               <span class="input-group-btn">
                 <button class="submit-button" name="form.buttons.subscribe" id="form-buttons-subscribe" type="submit" role="submit">
                   <span class="mailchimp-btn-text nl">Aanmelden</span>
