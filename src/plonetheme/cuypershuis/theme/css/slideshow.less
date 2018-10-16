@@ -352,7 +352,7 @@ body:not(.frontend).portaltype-object.template-edit {
 }
 
 /* Collection slideshow */
-body.frontend.portaltype-object:not(.userrole-authenticated) {
+body.frontend.portaltype-object {
 	.page-container,
 	footer {
 		
@@ -393,11 +393,11 @@ body.frontend.portaltype-object:not(.userrole-authenticated) {
 
 	.intro-header:before {
 		padding-top: 0px !important;
-		height: 80vh !important;
+		height: 100% !important;
 	}
 
 	.intro-header {
-		height: 100% !important;
+		height: 80vh !important;
 	}
 
 	#slickslideshow #slideshow-controls {
@@ -531,13 +531,13 @@ body:not(.portaltype-object) {
     }
 }
 
-body.portaltype-object:not(.template-edit).userrole-authenticated {
+/*body.portaltype-object:not(.template-edit).userrole-authenticated {
 	.info-btn {
 		display: none;
 	}
-}
+}*/
 
-body.portaltype-object.userrole-authenticated {
+body.portaltype-object {
 	#slide-description {
 		a {
 			color: #ffffff !important;
@@ -619,7 +619,7 @@ body.portaltype-object {
 	}
 
 	.intro-header {
-		height: 100% !important;
+		height: 80vh !important;
 	}
 
 	#slickcarousel .slick-slide {
@@ -668,6 +668,7 @@ body.portaltype-object {
 
 		    .slide-description {
 		    	color: #ffffff !important;
+		    	display: none !important;
 
 		    	span {
 		    		padding-right: 20px;
@@ -1161,6 +1162,7 @@ body.slideshow-empty {
 		    letter-spacing: 0.00em;
 		    margin-bottom: 0px;
 		    line-height: 63px;
+		    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 		}
 
 		.event-date {
@@ -1168,6 +1170,7 @@ body.slideshow-empty {
 			margin-left: 4px;
 			margin-top: 2px;
 			margin-bottom: 0px;
+			text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 		}
 	}
 
@@ -1179,6 +1182,13 @@ body.slideshow-empty {
 		
 	}
 
+}
+
+body.site-en,
+body.site-de {
+	#website-nav a.navbar-brand {
+		pointer-events: none;
+	}
 }
 
 

@@ -24,7 +24,7 @@
       </div>
 
       <div class="plone-collapse collapse navbar-collapse" id="portal-globalnav-collapse">
-        <form class="navbar-form navbar-right menu-search-button">
+        <form class="navbar-form navbar-right menu-search-button" tal:condition="python: language in ['nl']">
             <a href="#" type="input" class="btn btn-default nav-btn" tal:attributes="href python: '/'+language+'/search'"><i class="fa fa-search fa-lg"></i></a>
         </form>
         
@@ -103,7 +103,7 @@
                                   class string:${class_position}${class_children}${class_selected}">
 
                   <a
-                      tal:condition="python: subitems and not repeat.tab.end"
+                      tal:condition="python: subitems"
                       tal:attributes="title title; target target;"
                       href="#"
                       class="dropdown-toggle ${review_state}"
@@ -115,12 +115,12 @@
                       <span class="fa fa-angle-down"></span></a>
                   
                   <a
-                      tal:condition="python: not subitems or repeat.tab.end"
+                      tal:condition="python: not subitems"
                       tal:attributes="href href; title title; target target;"
                       class="${review_state}"
                       tal:content="tab/name">Tab Name</a>
 
-                  <tal:block tal:condition="python:subitems and not repeat.tab.end">
+                  <tal:block tal:condition="python:subitems">
                   <ul class="submenu dropdown-menu">
                   <tal:subitems tal:replace="structure subitems">
                     <tal:comment replace="nothing">Submenu</tal:comment>

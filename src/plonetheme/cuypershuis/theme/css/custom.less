@@ -1058,7 +1058,7 @@ body:not(.frontend) {
 	}
 
 	table tr:first-child td {
-		.circularBold();
+		/*.circularBold();
 		text-transform: uppercase;
 		font-size: 16px;
 		line-height: 22px;
@@ -1068,7 +1068,7 @@ body:not(.frontend) {
 		padding-left: 20px;
 		padding-right: 20px;
 		padding-top: 15px;
-    	padding-bottom: 15px;
+    	padding-bottom: 15px;*/
 	}
 
 	table > tbody > tr > td {
@@ -2588,11 +2588,11 @@ footer, body.mce-content-body {
 		}*/
 
 		.portletWrapper:nth-child(1) {
-			width: 50%;
+			width: 70%;
 		}
 
 		.portletWrapper:nth-child(2) {
-			width: 50%;
+			width: 30%;
 			padding-right: 0px;
 		}
 
@@ -2804,9 +2804,10 @@ footer {
 		margin-right: 0px;
 
 		p {
-			color: #ffffff;
+			color: #252527;
 			margin-bottom: 13px;
 			margin-top: 0px;
+			.circularBold();
 
 			a:not(.text-button) {
 				.circularBold();
@@ -4920,7 +4921,7 @@ body.template-listing_view {
 	}
 
 	#portal-globalnav.navbar-nav > li:last-child > a {
-		margin-top: 20px;
+		/*margin-top: 20px;
 	    margin-bottom: 19px;
 	    border: 2px solid @brand-primary-black;
 	    padding-left: 22px;
@@ -4932,20 +4933,20 @@ body.template-listing_view {
 	    	border: 2px solid @brand-primary;
 	    	background-color: @brand-primary;
 			color: #ffffff;
-	    }
+	    }*/
 	}
 
-	#portal-globalnav.navbar-nav > li.open:last-child > a {
+	/*#portal-globalnav.navbar-nav > li.open:last-child > a {
 		border: 2px solid @brand-primary;
 		background-color: @brand-primary;
 		color: #ffffff;
-	}
+	}*/
 
-	#portal-globalnav.navbar-nav > li.iselected:last-child > a {
+	/*#portal-globalnav.navbar-nav > li.iselected:last-child > a {
 		border: 2px solid @brand-primary;
 		background-color: @brand-primary;
 		color: #ffffff;
-	}
+	}*/
 }
 
 .plone-navbar-nav li .submenu {
@@ -6020,8 +6021,7 @@ body.frontend.template-advancedsearch {
 	body.frontend.portaltype-article.userrole-authenticated #content-core,
 	body.frontend.portaltype-serial.userrole-authenticated #content-core,
 	body.frontend.portaltype-resource.userrole-authenticated #content-core {
-	    width: auto;
-	    margin: 0 auto;
+
 	}
 }
 
@@ -6571,6 +6571,20 @@ body.disable-hover .entries * {
 html.ie11,
 html.ie10,
 html.ie9 {
+
+	height: 100%;
+
+	body {
+		height: 100%;
+	}
+	
+
+	footer#above {
+		margin-top: 0px !important;
+		padding-top: 80px !important;	
+	}
+
+	
 	input[type="text"]:not(.btn):not(.text-widget),
 	input[type="button"]:not(.btn),
 	input[type="password"]:not(.btn) {
@@ -6643,6 +6657,10 @@ html.ie9 {
 		a.dropdown-toggle {
 			border-left: 1px solid #ffffff;
 		}
+	}
+
+	@media (max-width: 768px) { 
+
 	}
 }
 
@@ -7996,11 +8014,22 @@ body.frontend.site-nl {
 	}
 }
 
+ul.social-media {
+	margin-left: 0 !important;
+	padding-left: 0px !important;
+	margin-top: -20px;
+	margin-bottom: 0px;
+}
+
 footer ul.social-media {
 	margin-left: 0 !important;
 	padding-left: 0px !important;
 	margin-top: -20px;
 	margin-bottom: 0px;
+}
+
+div#parent-fieldname-text ul.social-media {
+	margin-top: -20px !important;
 }
 
 footer .footer-logo-wrapper {
@@ -8023,6 +8052,35 @@ footer .footer-logo-wrapper {
 
     img {
     	width: 100%;
+    }
+}
+
+
+ul.social-media li {
+	display: inline-block;
+    
+    a {
+    	padding: 11px;
+	    border: 2px solid @brand-primary !important;
+	    border-radius: 50%;
+	    font-size: 16px;
+	    line-height: 18px;
+	    width: 45px;
+	    height: 45px;
+	    display: inline-block;
+	    margin-bottom: 0px !important;
+
+	    &:hover,
+		&:active,
+		&:focus {
+			color: @brand-primary-text-black !important;
+			border: 2px solid @brand-primary-text-black !important;
+		}
+
+    	i {
+    		width: 100%;
+    		text-align: center;
+    	}
     }
 }
 
@@ -8252,7 +8310,7 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 	}
 
 	@media(min-width: 992px) {
-		#column-collective-portletpage-toprow-portlet-historiehuis {
+		#column-collective-portletpage-toprow-portlet-nu-te-zien {
 			.portlet-item {
 				width: 50% !important;
 			}
@@ -8428,6 +8486,41 @@ footer#below {
 	}
 }
 
+footer#below {
+	@media (min-width: 992px) { 
+		background: #445071 !important;
+	}
+}
+
+footer#below:before {
+	@media (min-width: 768px) {
+		content: ' ';
+		display: table;
+		padding-top: 120px;
+	}
+}
+
+body:not(.site-nl) {
+	#language-dropdown {
+		padding-right: 35px;
+	}
+}
+
+body.frontend.portaltype-portlet-page.section-frontpage {
+	.slide-title-parent {
+		display: none !important;
+	}
+}
+
+body.site-en,
+body.site-de,
+body.site-nl {
+	@media(min-width: 1080px) {
+		#language-dropdown .dropdown-menu {
+			left: -17px;
+		}
+	}
+}
 
 
 

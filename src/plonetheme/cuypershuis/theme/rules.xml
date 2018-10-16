@@ -233,7 +233,7 @@
       </rules>
 
       <replace css:theme-children="footer#above .container" css:content-children="#portal-footer-wrapper" />
-      <replace css:theme-children="footer#below .container" css:content="#portal-footer-wrapper .portlet-static-ontdek-ook" />
+      <replace css:theme-children="footer#below .container" css:content="#portal-footer-wrapper .portlet-static-bezoek-ook" />
 
       <!--<after css:theme-children=".main-content" css:content=".portlet-rrssb" method="raw"/>
       <drop css:content="footer .portlet-rrssb"/>-->
@@ -251,7 +251,7 @@
           <form id="newsletter-subscriber-form" class="form-inline" role="form" method="post"><xsl:attribute name="action"><xsl:value-of select="div/dl/dd/form/@action"/></xsl:attribute>
             <div class="input-group">
               <input type="text"
-                class="text-widget required form-control input-lg textline-field" placeholder="Email" id="form-widgets-email" name="form.widgets.email"></input>
+                class="text-widget required form-control input-lg textline-field" placeholder="E-mail" id="form-widgets-email" name="form.widgets.email"></input>
               <span class="input-group-btn">
                 <button class="submit-button" name="form.buttons.subscribe" id="form-buttons-subscribe" type="submit" role="submit">
                   <span class="mailchimp-btn-text nl">Aanmelden</span>
@@ -279,7 +279,7 @@
         </div>
       </replace>
 
-      <replace css:content="#parent-fieldname-text img.image-inline">
+      <replace css:content="#parent-fieldname-text img.image-inline[data-scale='large']">
         <div class="img-wrapper">
           <xsl:copy-of select="."/>
         </div>

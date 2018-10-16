@@ -12,9 +12,47 @@ from plone.app.uuid.utils import uuidToCatalogBrain
 from datetime import date, datetime, timedelta
 from DateTime import DateTime
 import time
+from zope.contentprovider.interfaces import IContentProvider
+from zope.component import getMultiAdapter
 
+from Products.CMFCore.utils import getToolByName
 
 class ContextToolsView(BrowserView):
+    def trimText(self, text, limit):
+        if text != None:        
+            if len(text) > limit: 
+                res = text[0:limit]
+                lastspace = res.rfind(" ")
+                res = res[0:lastspace] + " ..."
+                return res
+            else:
+                return text
+        else:
+            return ""
+
+    def toLocalizedTime(self, time, long_format=None, time_only=None):
+        """Convert time to localized time
+        """
+        util = getToolByName(self.context, 'translation_service')
+        return util.ulocalized_time(time, long_format, time_only, self.context,
+                                    domain='plonelocales')
+
+    def get_pub_date(self, item):
+        try:
+            date = item.EffectiveDate()
+            if not date or date == 'None':
+                return None
+            return self.toLocalizedTime(DateTime(date))
+        except:
+            return None
+
+    def formatted_date(self, obj):
+        item = obj.getObject()
+        provider = getMultiAdapter(
+            (self.context, self.request, self),
+            IContentProvider, name='formatted_date'
+        )
+        return provider(item)
 
     def getImageObject(self, item, scale="large"):
         if item.portal_type == "Image":
@@ -28,7 +66,7 @@ class ContextToolsView(BrowserView):
                 return None
         else:
             return None
-            
+
     def isEventPast(self, event):
         """ Checks if the event is already past """
         if event.portal_type != 'Event':
