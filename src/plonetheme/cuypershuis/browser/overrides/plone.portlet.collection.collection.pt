@@ -10,8 +10,6 @@
     tal:attributes="class string:portlet portletCollection ${view/css_class}">
     
 
-
-
     <tal:quote tal:condition="view/data/show_quote">
       <tal:items tal:repeat="obj python: view.results()">
         <tal:item 

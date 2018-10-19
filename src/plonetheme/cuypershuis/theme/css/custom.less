@@ -5959,8 +5959,8 @@ body.frontend.template-advancedsearch {
 	.select2-container-multi .select2-choices {
 		.inputField();
 		background-image: none;
-		padding: 9px;
-		padding-bottom: 8px;
+		padding: 6px;
+		padding-bottom: 11px;
 		padding-left: 5px !important;
 		padding-right: 28px;
 
@@ -5972,6 +5972,18 @@ body.frontend.template-advancedsearch {
 
 	input:not(.search-btn), select, .select2-container {
 		width: 100% !important;
+	}
+
+	input.form-control[type="text"] {
+		border: 1px solid #c4c4c4 !important;
+	}	
+
+	.select2-container-multi .select2-choices {
+		border: 1px solid #c4c4c4 !important;
+	}
+
+	.select2-container-multi.select2-container-active .select2-choices {
+		border: 1px solid #c4c4c4 !important;
 	}
 
 	.select2-input {
@@ -5994,8 +6006,8 @@ body.frontend.template-advancedsearch {
 		padding-right: 8px;
 		
 		&> div {
-			line-height: 18px;
-    		padding-top: 4px;
+			line-height: 22px;
+    		padding-top: 0px;
 		}
 
 		a.select2-search-choice-close {
