@@ -23,6 +23,10 @@ msgid 'identification_objectNumber'
 msgstr 'Objectnummer'
 
 #: ../object.py
+msgid 'object_number'
+msgstr 'Objectnummer'
+
+#: ../object.py
 msgid 'titleAuthorImprintCollation_titleAuthor_author'
 msgstr 'Auteur'
 
@@ -43,6 +47,10 @@ msgid 'physicalCharacteristics_materials'
 msgstr 'Materiaal'
 
 #: ../object.py
+msgid 'object_material'
+msgstr 'Materiaal'
+
+#: ../object.py
 msgid 'identification_identification_collection'
 msgstr 'Collectie'
 
@@ -51,7 +59,15 @@ msgid 'physicalCharacteristics_techniques'
 msgstr 'Techniek'
 
 #: ../object.py
+msgid 'object_technique'
+msgstr 'Techniek'
+
+#: ../object.py
 msgid 'productionDating_productionDating_maker'
+msgstr 'Vervaardiger'
+
+#: ../object.py
+msgid 'sortable_creator_name'
 msgstr 'Vervaardiger'
 
 #: ../object.py
@@ -87,6 +103,10 @@ msgid "Description"
 msgstr "Beschrijving"
 
 #: ../object.py
+msgid "object_description"
+msgstr "Beschrijving"
+
+#: ../object.py
 msgid "Creator"
 msgstr "Auteur"
 
@@ -101,4 +121,18 @@ msgstr "Nu te zien"
 #: ../object.py
 msgid 'share_this_page'
 msgstr "Deel dit artikel"
+
+#: ../object.py
+msgid 'production_date_start'
+msgstr "Vervaardiging begindatum"
+
+#: ../object.py
+msgid 'production_date_end'
+msgstr "Vervaardiging einddatum"
+
+#: ../object.py
+msgid 'object_inscription'
+msgstr "Opschriften/merken"
+
+
 

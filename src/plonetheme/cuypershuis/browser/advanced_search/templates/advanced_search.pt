@@ -65,8 +65,8 @@
                             select2_data python: field['select2_data'];">
 
                   <div class="form-group field">
-                    <label class="col-sm-3 control-label" i18n:translate="" tal:attributes="for field_label;" tal:content="field_label">Title</label>
-                    <div class="col-sm-9">
+                    <label class="col-sm-4 control-label" i18n:translate="" tal:attributes="for field_label;" tal:content="field_label">Title</label>
+                    <div class="col-sm-8">
 
                       <tal:notwidget tal:condition="not:is_widget">
                         <input type="text" class="form-control" placeholder=""

@@ -66,9 +66,9 @@
                 </span>
         </div>
         
-        <!--<div class="visualClear div-advanced-search">
-          <a class="advanced-search" tal:attributes="href python: '/%s/@@advancedsearch?%s' %(getattr(context,'language', 'nl'), advanced_query) if advanced_query else '/%s/@@advancedsearch' %(getattr(context, 'language', 'nl'))" i18n:translate="label_advanced_search">Advanced search</a>
-        </div>-->
+        <div class="visualClear div-advanced-search">
+          <a class="advanced-search" tal:attributes="href python: '/%s/@@advancedsearch?%s' %(getattr(context,'language', 'nl'), advanced_query()) if advanced_query() else '/%s/@@advancedsearch' %(getattr(context, 'language', 'nl'))" i18n:translate="label_advanced_search">Advanced search</a>
+        </div>
         
         <dl class="actionMenu"
             tal:attributes="class python:view.show_advanced_search() and 'actionMenu' or 'actionMenu'">
