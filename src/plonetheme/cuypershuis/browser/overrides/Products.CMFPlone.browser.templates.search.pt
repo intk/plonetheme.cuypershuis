@@ -84,73 +84,101 @@
             </button>
           </dt>
           
+          
+
           <dd class="actionMenuContent">
             <div id="search-filter" i18n:domain="plone">
               <fieldset class="noborder">
                 <h3 i18n:translate="label_new_items_since" i18n:translate="narrow_search_options">Filter the results</h3>
                   
+                  
+                  <div class="field"
+                       tal:define="all_checked python: request.get('hasMedia', None) == True;
+                                   toggle_select_state python:all_checked and 'true' or 'false';" style="margin-bottom: 0px">
+                    
+                    <div class="onViewOptionsToggle">
+                      <input type="checkbox" onchange="" name="only_images_toggle" value="#" id="only_images_toggle" class="noborder" checked="checked"
+                             tal:attributes="checked python:all_checked and 'checked' or '';" />
+                      <label for="only_images_toggle" i18n:translate="search_only_images" i18n:domain="plonetheme.cuypershuis">Only images</label>
+                    </div>
+                    
+                    <div class="only-images-options" style="display: none !important;"
+                      tal:define="is_checked python:((request.get('hasMedia', None) == True)) and 'checked' or ''">
+                      <div>
+                        <input type="checkbox" name="hasMedia:boolean" value="False" class="noborder" checked="checked"
+                             tal:attributes="id python: 'hasMedia';
+                                             checked python:((request.get('hasMedia', None) == True)) and 'checked' or '';
+                                             value python: True if is_checked else False"/>
+
+                        <label for="only-images-options">Only images</label>
+                      </div>
+                    </div>
+                  </div>
+
+
                   <div class="field"
                        tal:define="portal_types portal/portal_types;
                                    types_list view/types_list;
-                                   all_checked python:(len(search_filters) == len(request.get('path', [])));
-                                   toggle_select_state python:all_checked and 'true' or 'false';">
-
-                    <div class="images-only-filter"
-                      tal:define="images_checked python: request.get('hasMedia', None) == True">
-                      <input type="checkbox" name="hasMedia:boolean" value="False" id="images-only-filter"
-                        tal:attributes="checked python: images_checked"/>
-                      
-                      <label for="images-only-filter" tal:condition="python: getattr(context, 'language', 'en') == 'en'">Images only</label>
-                      <label for="images-only-filter" tal:condition="python: getattr(context, 'language', 'en') == 'nl'">Alleen met beeld</label>
+                                   object_checked python: 'Object' in request.get('portal_type', []) and len(request.get('portal_type', [])) == 1;
+                                   all_but_object_checked python: 'Object' not in request.get('portal_type', []) and len(request.get('portal_type', [])) == len(types_list)-1;
+                                   " style="margin-bottom: 0px">
+                    
+                    <div class="optionsToggle">
+                      <input type="checkbox" onchange="" name="only_website_toggle" value="#" id="only_website_toggle" class="noborder" checked="checked"
+                             tal:attributes="checked python:all_but_object_checked and 'checked' or '';" />
+                      <label for="only_website_toggle" i18n:translate="only_in_the_website" i18n:domain="plonetheme.cuypershuis">Only in the website</label>
                     </div>
 
                     <div class="optionsToggle">
                       <input type="checkbox" onchange="" name="pt_toggle" value="#" id="pt_toggle" class="noborder" checked="checked"
-                             tal:attributes="checked python:all_checked and 'checked' or '';" />
-
-                      <tal:en tal:condition="python: getattr(context, 'language', 'en') == 'en'">
-                       <label for="pt_toggle"
-                         i18n:translate=""
-                         >Only in the collection
-                       </label>
-                      </tal:en>
-
-                      <tal:nl tal:condition="python: getattr(context, 'language', 'en') == 'nl'">
-                        <label for="pt_toggle"
-                         i18n:translate=""
-                         >Alleen in de collectie
-                       </label>
-                      </tal:nl>
+                             tal:attributes="checked python:object_checked and 'checked' or '';" />
+                      <label for="pt_toggle" i18n:translate="label_toggle_search" i18n:domain="plonetheme.cuypershuis">Only in the collection</label>
                     </div>
+
+                    
                     
                     <div class="search-type-options" style="display:none;">
-                      <tal:div tal:define="typeLists python:context.createMultiColumnList(types_list, numCols=2, sort_on='self');"
-                               tal:repeat="sublist typeLists">
-                        <tal:items repeat="type sublist">
-                          <div>
-                            <tal:all_checked tal:condition="all_checked">
-                            <input type="checkbox" name="portal_type:list" value="#" class="noborder" checked="checked"
-                                   tal:attributes="value type;
-                                                   id string:portal_type_${repeat/sublist/number}_${repeat/type/number};
-                                                   checked python:((type in ['test']) and 'checked' or '')"/>
-                              <label for="" i18n:translate=""
-                                     tal:attributes="for string:portal_type_${repeat/sublist/number}_${repeat/type/number}"
-                                     tal:content="python: portal_types.getTypeInfo(type).Title()" />
-                            </tal:all_checked>
-                            <tal:not_all_checked tal:condition="not:all_checked">
-                            <input type="checkbox" name="portal_type:list" value="#" class="noborder" checked="checked"
-                                   tal:attributes="value type;
-                                                   id string:portal_type_${repeat/sublist/number}_${repeat/type/number};
-                                                   checked python:((type in request.get('portal_type', [])) or first_call) and 'checked' or ''"/>
-                              <label for="" i18n:translate=""
-                                     tal:attributes="for string:portal_type_${repeat/sublist/number}_${repeat/type/number}"
-                                     tal:content="python: portal_types.getTypeInfo(type).Title()" />
-                            </tal:not_all_checked>
-                          </div>
-                        </tal:items>
-                      </tal:div>
+                      <div tal:repeat="type types_list">
+                        
+                          <input type="checkbox" name="portal_type:list" value="#" class="noborder" checked="checked"
+                                 tal:attributes="value type;
+                                                 id string:portal_type_${repeat/type/number};
+                                                 checked python:((type in request.get('portal_type', []))) and 'checked' or ''"/>
+                            <label for="" i18n:translate=""
+                                   tal:attributes="for string:portal_type_${repeat/type/number}"
+                                   tal:content="python: portal_types.getTypeInfo(type).Title()" />
+
+                        
+                      </div>
                     </div>
+
                   </div>
+
+
+                  <!--<div class="field"
+                       tal:define="all_checked python: request.get('object_on_display', None) == True;
+                                   toggle_select_state python:all_checked and 'true' or 'false';" style="margin-bottom: 0px">
+                    
+                    <div class="onViewOptionsToggle">
+                      <input type="checkbox" onchange="" name="on_view_toggle" value="#" id="on_view_toggle" class="noborder" checked="checked"
+                             tal:attributes="checked python:all_checked and 'checked' or '';" />
+                      <label for="on_view_toggle" i18n:translate="search_nu_te_zien" i18n:domain="plonetheme.cuypershuis">Now on view</label>
+                    </div>
+                    
+                    <div class="on-view-options" style="display: none !important;"
+                      tal:define="is_checked python:((request.get('object_on_display', None) == True)) and 'checked' or ''">
+                      <div>
+                        <input type="checkbox" name="object_on_display:boolean" value="False" class="noborder" checked="checked"
+                             tal:attributes="id python: 'object_on_display';
+                                             checked python:((request.get('object_on_display', None) == True)) and 'checked' or '';
+                                             value python: True if is_checked else False"/>
+
+                        <label for="on-view-options">Nu te zien</label>
+                      </div>
+                    </div>
+                  </div>-->
+
+
                 </fieldset>
                 <fieldset class="noborder" style="display:none;">
                   <legend i18n:translate="label_new_items_since">New items since</legend>
@@ -194,36 +222,9 @@
                 </fieldset>
 
 
-                <fieldset class="noborder filters">
-                  
-                  <div class="field"
-                    tal:define="searchfilters search_filters;
-                                all_checked python:(len(searchfilters) == len(request.get('path', [])));
-                                toggle_select_state python:all_checked and 'true' or 'false';">
-
-                    <div class="search-collection-options">
-                      
-                      <div class="search-type-options">
-                        <tal:items repeat="filter searchfilters">
-                            <div>
-                              <input type="checkbox" name="path:list" value="#" class="noborder" checked="checked"
-                                     tal:attributes="value filter/path;
-                                                     id string:folder_${filter/name};
-                                                     checked python:((filter.get('path') in request.get('path', []))) and 'checked' or '';"/>
-                                <label for="" i18n:translate=""
-                                       tal:attributes="for string:folder_${filter/name}"
-                                       tal:content="filter/name" />
-                            </div>
-                        </tal:items>
-                      </div>
-
-                    </div>
-                  </div>
-                </fieldset>
-
-
               </div>
             </dd>
+
           </dl>
           
 
@@ -389,7 +390,7 @@
         <div class="visualClear"><!-- --></div>
     </form>
 
-    <script type="text/javascript" src="${context/portal_url}/++resource++search.js">
+    <script type="text/javascript" src="${context/portal_url}/++resource++plonetheme.cuypershuis/search.js">
     </script>
   </div>
 

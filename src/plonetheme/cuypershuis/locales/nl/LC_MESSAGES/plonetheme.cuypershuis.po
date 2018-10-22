@@ -134,5 +134,25 @@ msgstr "Vervaardiging einddatum"
 msgid 'object_inscription'
 msgstr "Opschriften/merken"
 
+#: ../object.py
+msgid "label_toggle_search"
+msgstr "Alleen in de collectie"
+
+#: ../object.py
+msgid "advanced_search"
+msgstr "Geavanceerd zoeken"
+
+#: ../object.py
+msgid "search_nu_te_zien"
+msgstr "Nu te zien"
+
+#: ../object.py
+msgid "search_only_images"
+msgstr "Alleen met beeld"
+
+#: ../object.py
+msgid "only_in_the_website"
+msgstr "Alleen in de website"
+
 
 

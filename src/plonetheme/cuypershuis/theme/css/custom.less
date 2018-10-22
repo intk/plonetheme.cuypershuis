@@ -1907,7 +1907,7 @@ body.frontend, body#tinymce {
 
 		#portletPageTopRow > div:nth-child(even) {
 			h1 {
-				right: 0;
+				/*right: 0;
 				left: auto;
 				margin-right: 68px;
 				margin-left: auto;
@@ -1917,7 +1917,7 @@ body.frontend, body#tinymce {
 					margin-left: 35px;
 					right: auto;
 					margin-right: auto;
-				}
+				}*/
 			}
 		}
 
@@ -2248,7 +2248,7 @@ body.frontend, body#tinymce {
 
 		.subheading {
 			color: @brand-primary-black;
-			line-height: 2em;
+			line-height: 1.4;
 		}
 
 		.floating-label-form-group {
@@ -3465,7 +3465,7 @@ body.frontend.template-search,
 body.frontend.template-advancedsearch {
 
 	dl.actionMenu {
-		display: none !important;
+		
 	}
 
 	.extra-fields p {
@@ -3695,8 +3695,8 @@ body.frontend.template-advancedsearch {
 			min-height: 300px;
 
 			@media (min-width: 1140px) {
-				margin-left: 0;
-				margin-right: 0;
+				margin-left: -20%;
+				margin-right: 15%;
 			}
 		}
 
@@ -3908,7 +3908,7 @@ body.frontend.template-advancedsearch {
 
 	@media (min-width: 1140px) {
 		.actionMenuContent {
-			margin-right: -25%;
+			margin-right: -35%;
 		}
 	}
 
@@ -8214,8 +8214,13 @@ body.template-default_error_message {
 	}
 
 	.searchResults > .search-item:last-child, #page-not-found-list > .similar-item:last-child {
-		border-bottom: 1px solid #e7e7e8;
+		border-bottom: 0px solid #e7e7e8;
 	}
+
+
+	.searchResults > .search-item:first-child, #page-not-found-list > .similar-item:first-child {
+		border-top: 0px solid #e7e7e8;
+	}	
 
 	footer {
 		margin-top: 0px !important;
@@ -8914,6 +8919,63 @@ body.frontend.portaltype-portlet-page {
 
 .quote-image-wrapper.ie-object-fit img {
     display: none !important;
+}
+
+.plone-loader {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 10000;
+    div {
+
+		border-radius: 50%;
+	    width: 10em;
+	    height: 10em;
+	    
+	    margin: -6em auto;
+	    font-size: 5px;
+	    text-indent: -9999em;
+	    border-top: 1.1em solid rgba(39, 33, 33, 0.2);
+	    border-right: 1.1em solid rgba(218, 211, 211, 0.2);
+	    border-bottom: 1.1em solid rgba(218, 211, 211, 0.2);
+	    border-left: 1.1em solid rgba(218, 211, 211, 0.2);
+	    -webkit-transform: translateZ(0);
+	    -ms-transform: translateZ(0);
+	    transform: translateZ(0);
+	    -webkit-animation: load8 1.1s infinite linear;
+	    animation: load8 1.1s infinite linear;
+
+
+	}
+
+
+    div,
+	  div:after {
+	    border-radius: 50%;
+	    width: 10em;
+	    height: 10em;
+	  }
+	  @-webkit-keyframes load8 {
+	    0% {
+	      -webkit-transform: rotate(0deg);
+	      transform: rotate(0deg);
+	    }
+	    100% {
+	      -webkit-transform: rotate(360deg);
+	      transform: rotate(360deg);
+	    }
+	  }
+	  @keyframes load8 {
+	    0% {
+	      -webkit-transform: rotate(0deg);
+	      transform: rotate(0deg);
+	    }
+	    100% {
+	      -webkit-transform: rotate(360deg);
+	      transform: rotate(360deg);
+	    }
+	  }
 }
 
 
