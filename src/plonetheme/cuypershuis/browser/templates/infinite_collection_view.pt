@@ -1,0 +1,90 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="plone">
+<body>
+
+<metal:content-core fill-slot="content-core">
+<metal:block define-macro="content-core">
+
+  <metal:listingmacro define-macro="listing">
+    <tal:results define="batch view/batch;
+                         b_start python: request.get('b_start', 0);
+                         context_tools python:context.restrictedTraverse('@@context_tools')">
+      <tal:listing condition="batch">
+
+        <style>
+        html {
+          height: auto !important;
+        }
+        </style>
+        
+        <div class="entries masonry-grid grid-sizer" id="masonry-grid" metal:define-slot="entries">
+          <tal:repeat repeat="item batch" metal:define-macro="entries">
+            <div class="grid-item" tal:define="
+                item_url item/getURL;
+                item_id item/getId;
+                item_title item/Title;
+                item_description item/Description;
+                item_type item/PortalType;
+                item_on_display item/object_on_display|nothing;
+                item_modified item/ModificationDate;
+                item_created item/CreationDate;
+                item_type_class python:'contenttype-' + view.normalizeString(item_type);
+                item_wf_state item/review_state;
+                item_wf_state_class python:'state-' + view.normalizeString(item_wf_state);
+                item_creator item/Creator;
+                has_media nocall:item/leadMedia;
+                item_link python:item_type in view.use_view_action and item_url+'/view' or item_url;                
+                item_has_image python:item.getIcon;
+                item_index repeat/item/index;"
+                >
+              <metal:block define-slot="entry">
+                <article class="entry">
+                     <div class="thumb-wrapper">         
+                            <a class="thumb-image" tal:condition="python: has_media not in [None, ''] or item_type == 'Image'" href="" tal:attributes="href python: item_link"
+                              tal:define="item_img python:context_tools.getImageObject(item, 'large')">
+                              
+                              <div class="on-display-wrapper" tal:condition="item_on_display" i18n:domain="plonetheme.cuypershuis">
+                                <div i18n:translate="object_on_display" class="label_inner">Nu te zien</div>
+                              </div>
+                              
+                              <img tal:define="images_src python:item_img;
+                                                 "
+                                     src="" alt=""
+                                     tal:attributes="src images_src; class python:'tileImage'; alt item_title; title item_title;" /> 
+                            </a> 
+                          </div>
+
+                          <div class="entry-wrapper">
+                              <h3 class="item-title">
+                                <a href="#"
+                                 tal:attributes="href python: item_link;"
+                                 tal:content="item_title"
+                                 >
+                                Title
+                                </a>
+                              </h3>
+                          </div>
+                          <div>
+                            <p class="item-description" tal:content="item_description"></p>
+                          </div>    
+                </article>
+              </metal:block>
+            </div>
+          </tal:repeat>
+        </div>
+
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
+        <div class="plone-loader"><div class="loader"/></div>
+
+      </tal:listing>
+    </tal:results>
+  </metal:listingmacro>
+</metal:block>
+</metal:content-core>
+</body>
+</html>

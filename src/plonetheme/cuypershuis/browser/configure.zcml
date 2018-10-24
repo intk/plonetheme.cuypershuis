@@ -57,6 +57,22 @@
         />
 
   <browser:page
+        name="infinite_collection_view"
+        for="*"
+        template="templates/infinite_collection_view.pt"
+        class=".views.InfiniteCollectionView"
+        permission="zope2.View"
+        />
+
+  <browser:menuItem
+        for="*"
+        menu="plone_displayviews"
+        title="Infinite Collection View"
+        action="@@infinite_collection_view"
+        description="Shows the infinite scrolling collection view"
+        />
+
+  <browser:page
         name="advancedsearch"
         class=".advanced_search.views.AdvancedSearchView"
         permission="zope2.View"

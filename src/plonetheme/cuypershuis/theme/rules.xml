@@ -113,6 +113,15 @@
         css:content-children="#viewlet-above-content-title"
         />
 
+      <drop css:theme="#above-content" css:if-content="body.portaltype-collection"/>
+      
+      <replace
+        css:theme-children="#below-title-above-content"
+        css:content-children="#viewlet-above-content-title"
+        css:if-content="body.portaltype-collection"
+        />
+
+
       <replace
         css:theme-children="#below-content"
         css:content-children="#viewlet-below-content-body"

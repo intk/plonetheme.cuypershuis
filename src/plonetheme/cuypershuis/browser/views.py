@@ -354,10 +354,8 @@ class FullScreenCollectionView(CollectionView):
         return None
 
 
-
-
-
-
+class InfiniteCollectionView(CollectionView):
+    pass
 
 
 def objectTranslated(ob, event):
