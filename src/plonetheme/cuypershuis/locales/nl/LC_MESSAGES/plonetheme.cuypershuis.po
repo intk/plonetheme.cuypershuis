@@ -27,6 +27,10 @@ msgid 'object_number'
 msgstr 'Objectnummer'
 
 #: ../object.py
+msgid 'object_name'
+msgstr 'Objectnaam'
+
+#: ../object.py
 msgid 'titleAuthorImprintCollation_titleAuthor_author'
 msgstr 'Auteur'
 
@@ -88,7 +92,7 @@ msgstr "Titel"
 
 #: ../object.py
 msgid 'type_to_search'
-msgstr "Type om te zoeken"
+msgstr "Begin met typen"
 
 #: ../object.py
 msgid 'path'
@@ -124,7 +128,7 @@ msgstr "Deel dit artikel"
 
 #: ../object.py
 msgid 'production_date_start'
-msgstr "Vervaardiging begindatum"
+msgstr "Gemaakt in het jaar"
 
 #: ../object.py
 msgid 'production_date_end'

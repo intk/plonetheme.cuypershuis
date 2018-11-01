@@ -62,7 +62,7 @@ class AdvancedSearchView(BrowserView, Search):
         extra_filters = []
 
         # Needs fix
-        widget_fields = ['sortable_creator_name', 'association_subject', 'acquisition_method', 'creator_role', 'object_qualifier', 'sortable_creator_name']
+        widget_fields = ['sortable_creator_name', 'association_subject', 'acquisition_method', 'creator_role', 'object_qualifier', 'sortable_creator_name', 'object_name']
 
 
         new_params = []
@@ -136,6 +136,9 @@ class AdvancedSearchView(BrowserView, Search):
             },
             'object_technique': {
                 'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.objecttechnique", "initialValues": {}, "separator": "_"}' % (context_url)
+            },
+            'object_name': {
+                'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.objectname", "initialValues": {}, "separator": "_"}' % (context_url)
             }
         }
         
