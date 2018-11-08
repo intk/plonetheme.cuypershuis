@@ -84,6 +84,10 @@
                   </div>
               </tal:field>
             </tal:extra_fields>
+            
+            <input type="hidden" class="form-control" name="portal_type:list" value="Object">
+            <br/>
+            <label>U kunt hier zoeken op een woord of het begin van een woord met een * erachter</label>
 
             <div class="col-sm-12 no-padding search-btn-wrapper" i18n:domain="plone">
               <input class="searchPage searchButton btn btn-default search-btn"

@@ -22,13 +22,13 @@
         }
         </style>
         
-        <div class="entries masonry-grid grid-sizer" id="masonry-grid" metal:define-slot="entries">
+        <div class="entries masonry-grid grid-sizer" tal:attributes="class python: 'entries masonry-grid grid-sizer overview' if 'overview' in context.Subject() else 'entries masonry-grid grid-sizer'" id="masonry-grid" metal:define-slot="entries">
           <tal:repeat repeat="item batch" metal:define-macro="entries">
             <div class="grid-item" tal:define="
                 item_url item/getURL;
                 item_id item/getId;
                 item_title item/Title;
-                item_description item/Description;
+                item_description python: context.restrictedTraverse('@@context_tools').trimText(item.Description(), 200);
                 item_type item/PortalType;
                 item_on_display item/object_on_display|nothing;
                 item_modified item/ModificationDate;

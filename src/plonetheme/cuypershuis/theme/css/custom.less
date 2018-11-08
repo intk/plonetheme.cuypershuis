@@ -3461,6 +3461,13 @@ body.template-default_error_message #content-core p {
 
 
 /* Search page */
+
+div.div-advanced-search {
+	padding-top: 10px;	
+	clear: both;
+	font-size: 16px;
+}
+
 body.frontend.template-search,
 body.frontend.template-advancedsearch {
 
@@ -4694,7 +4701,8 @@ body.frontend.portaltype-lrf {
 }
 
 body.frontend, body#tinymce {
-	#content-core {
+	#content-core,
+	.div-advanced-search {
 		a {
 			border-bottom: 1px solid @brand-primary;
 			color: @brand-primary;
@@ -9014,7 +9022,7 @@ body.portaltype-portlet-page .portletCollection {
 		visibility: hidden;
 	}
 
-	.masonry-grid p.item-description {
+	.masonry-grid:not(.overview) p.item-description {
 		line-height: 16px !important;
 		font-size: 0.750em !important;
 		margin-top: 8px !important;
