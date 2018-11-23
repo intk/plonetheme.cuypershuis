@@ -9,6 +9,15 @@
 
 <metal:content-core fill-slot="content-core">
 <metal:block define-macro="content-core">
+  
+
+  <div metal:define-macro="text-field-view"
+      id="parent-fieldname-text" class="stx"
+      tal:define="text view/text"
+      tal:condition="text"
+      tal:attributes="class view/text_class">
+    <div metal:define-slot="inside" tal:replace="structure text">The body</div>
+  </div>
 
   <metal:listingmacro define-macro="listing">
     <tal:results define="batch view/batch;
@@ -20,7 +29,13 @@
         html {
           height: auto !important;
         }
+
+        #content-core #parent-fieldname-text {
+          padding: 20px;
+        }
         </style>
+
+
         
         <div class="entries masonry-grid grid-sizer" tal:attributes="class python: 'entries masonry-grid grid-sizer overview' if 'overview' in context.Subject() else 'entries masonry-grid grid-sizer'" id="masonry-grid" metal:define-slot="entries">
           <tal:repeat repeat="item batch" metal:define-macro="entries">

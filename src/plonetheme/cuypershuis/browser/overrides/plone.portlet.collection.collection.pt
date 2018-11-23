@@ -195,7 +195,7 @@
               </p>
             </tal:event>
 
-            <p class="event-date" tal:condition="view/data/show_frontpage"><span tal:content="view/data/header"></span></p>
+            <p class="event-date" tal:condition="view/data/show_frontpage"></p>
 
             <h2 class="item-title">
               <a href="#"
