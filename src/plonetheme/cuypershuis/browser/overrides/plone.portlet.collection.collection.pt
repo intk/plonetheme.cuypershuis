@@ -113,7 +113,7 @@
         <span class="portletBottomLeft"></span>
         <div class="formControls">
         <span tal:condition="python:showMore">
-        <a tal:attributes="href collection_url">
+        <a tal:attributes="href python: collection_url() if not header_url() else header_url()">
            <span class="hiddenStructure"><span tal:replace="view/data/header" /> - </span>
            <input i18n:attributes="value more_url" type="submit" class="btn-default show-more" value="More&hellip;"/>
         </a>
@@ -309,7 +309,7 @@
         <span class="portletBottomLeft"></span>
         <div class="formControls">
         <span tal:condition="python:showMore">
-        <a tal:attributes="href collection_url">
+        <a tal:attributes="href python: collection_url() if not header_url() else header_url()">
            <span class="hiddenStructure"><span tal:replace="view/data/header" /> - </span>
            <input i18n:attributes="value more_url" type="submit" class="btn-default show-more" value="More&hellip;"/>
         </a>

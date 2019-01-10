@@ -33,9 +33,6 @@
           tal:attributes="action python: '/%s/@@search' %(getattr(context, 'language', 'nl'))"
           tal:define="portal python:context.restrictedTraverse('@@plone_portal_state').portal();
                       language python:getattr(context, 'language', 'nl');
-                      extra_filters nocall: portal/@@advancedsearch/getExtraFilters;
-                      advanced_query nocall: portal/@@advancedsearch/getAdvancedButtonQuery;
-                      search_filters python: portal.restrictedTraverse('@@advancedsearch').getSearchFilters(language);
                       first_call not:request/advanced_search|nothing;
                       st python:request.get('SearchableText', '');
                       DateTime python:modules['DateTime'].DateTime;
@@ -66,9 +63,9 @@
                 </span>
         </div>
         
-        <div class="visualClear div-advanced-search">
+        <!--<div class="visualClear div-advanced-search">
           <a class="advanced-search" tal:attributes="href python: '/%s/@@advancedsearch?%s' %(getattr(context,'language', 'nl'), advanced_query()) if advanced_query() else '/%s/@@advancedsearch' %(getattr(context, 'language', 'nl'))" i18n:translate="label_advanced_search">Advanced search</a>
-        </div>
+        </div>-->
         
         <dl class="actionMenu"
             tal:attributes="class python:view.show_advanced_search() and 'actionMenu' or 'actionMenu'">
@@ -129,11 +126,11 @@
                       <label for="only_website_toggle" i18n:translate="only_in_the_website" i18n:domain="plonetheme.cuypershuis">Only in the website</label>
                     </div>
 
-                    <div class="optionsToggle">
+                    <!--<div class="optionsToggle">
                       <input type="checkbox" onchange="" name="pt_toggle" value="#" id="pt_toggle" class="noborder" checked="checked"
                              tal:attributes="checked python:object_checked and 'checked' or '';" />
                       <label for="pt_toggle" i18n:translate="label_toggle_search" i18n:domain="plonetheme.cuypershuis">Only in the collection</label>
-                    </div>
+                    </div>-->
 
                     
                     
@@ -278,7 +275,7 @@
               <div id="search-results-bar">
                 
               </div>
-               <div class="clearfix extra-fields" i18n:domain="plonetheme.cuypershuis">
+               <!--<div class="clearfix extra-fields" i18n:domain="plonetheme.cuypershuis">
                       <tal:define_extra
                         tal:define="extra_filters python: extra_filters">
                         <p tal:condition="extra_filters" tal:content="python: 'Verfijnen: ' if getattr(context, 'language', None) == 'nl' else 'Refine: '"></p>
@@ -287,7 +284,7 @@
                           <input type="hidden" tal:attributes="value python: extra_filter['value']; name python: extra_filter['param']"/>
                         </tal:items>
                       </tal:define_extra>
-                      </div>
+                      </div>-->
 
               <metal:searchresults define-macro="search_results">
                 <div class="autotabs">

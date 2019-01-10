@@ -8,22 +8,24 @@
   <dl tal:attributes="class string:portlet portletMailChimp portletMailChimp-${view/name}">
 
     <dt class="portletHeader">
-      <h3 tal:content="view/name">Title of the portlet</h3>
+      <span tal:content="view/name">Title of the portlet</span>
     </dt>
 
     <dd class="portletItem odd">
       <form tal:attributes="action view/endpoint_url|nothing;" id="newsletter-subscriber-form" method="get">
         <div id="formfield-form-widgets-email">
-          <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Uw mailadres" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'"/>
+          <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="E-mail" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'"/>
           <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Email" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'"/>
         </div>
 
         <input type="hidden" value="c04600e3ceefae8c502cbabec" name="u" tal:attributes="value view/user_id|nothing"/>
         <input type="hidden" value="42702e9770" name="id" tal:attributes="value view/list_id|nothing"/>
 
-        <div class="formControls">
-          <input id="form-buttons-subscribe" name="form.buttons.subscribe" class="submit-widget button-field context" value="Inschrijven" type="submit" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">
-          <input id="form-buttons-subscribe" name="form.buttons.subscribe" class="submit-widget button-field context" value="Subscribe" type="submit" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'">
+        <div class="formControls input-group">
+          <span class="input-group-btn">
+            <input id="form-buttons-subscribe" name="form.buttons.subscribe" class="submit-widget button-field context submit-button" value="Aanmelden" type="submit" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">
+            <input id="form-buttons-subscribe" name="form.buttons.subscribe" class="submit-widget button-field context submit-button" value="Subscribe" type="submit" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'">
+          </span>
         </div>
 
         <div id="subscribe-result">
@@ -32,7 +34,6 @@
           
           <p class="success-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'">We have to confirm your email address. In order to finish the newsletter subscription, click on the link inside the email we just send you.</p>
           <p class="success-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">We moeten uw email adres bevestigen om de nieuwsbrief inschrijving af te ronden. Klik op de link in de email die we u zojuist hebben verstuurd.</p>
-
         </div>
       </form>
     </dd>
