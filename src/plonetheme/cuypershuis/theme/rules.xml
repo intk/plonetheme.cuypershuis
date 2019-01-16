@@ -114,6 +114,7 @@
         />
 
       <drop css:theme="#above-content" css:if-content="body.portaltype-collection"/>
+      <drop css:theme="#above-content" css:if-content="body.portaltype-folder"/>
       
       <replace
         css:theme-children="#below-title-above-content"
@@ -121,6 +122,11 @@
         css:if-content="body.portaltype-collection"
         />
 
+       <replace
+        css:theme-children="#below-title-above-content"
+        css:content-children="#viewlet-above-content-title"
+        css:if-content="body.portaltype-folder"
+        />
 
       <replace
         css:theme-children="#below-content"
